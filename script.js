@@ -1,3 +1,4 @@
+async function load1() {
 d3.csv('data.csv', function (data) {
   // Variables
   var body = d3.select('body')
@@ -91,3 +92,4 @@ d3.csv('data.csv', function (data) {
       .style('text-anchor','end')
       .text('Annualized Return')
 })
+}
