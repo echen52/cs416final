@@ -1,22 +1,25 @@
 let currentScene = 0;
-const scenes = [renderScene1, renderScene2, renderScene3];  
+const scenes = [renderScene1, renderScene2, renderScene3];
 
-
+async function loadData() {
+        const data = await d3.csv("Data/RAPTOR_ALL_T20.csv");
+        return data;
+ }
 
 window.onload = renderScene;
 
-document.getElementById('previous').style.display = 'none'; 
+document.getElementById('previous').style.display = 'none';
 
 document.getElementById('next').addEventListener('click', function() {
     if (currentScene === scenes.length - 1) {
         document.getElementById('next').style.display = 'none';
-        document.getElementById('start-over').style.display = 'inline-block'; 
+        document.getElementById('start-over').style.display = 'inline-block';
     } else {
         currentScene = (currentScene + 1) % scenes.length;
         renderScene();
 
         if (currentScene === 1) {
-            document.getElementById('previous').style.display = 'inline-block'; 
+            document.getElementById('previous').style.display = 'inline-block';
         }
     }
 });
@@ -36,13 +39,13 @@ document.getElementById('previous').addEventListener('click', function() {
     }
 });
 document.getElementById('start-over').addEventListener('click', function() {
-    clearScene3Content() 
+    clearScene3Content()
     currentScene = 0;
     renderScene();
-    
+
     document.getElementById('start-over').style.display = 'none';
     document.getElementById('previous').style.display = 'none';
-    document.getElementById('next').style.display = 'inline-block'; 
+    document.getElementById('next').style.display = 'inline-block';
 });
 
 
@@ -74,12 +77,12 @@ function renderScene1(raw_data) {
         chartHeight = height - margin.top - margin.bottom;
 
     var xScale = d3.scaleBand()
-        .domain(aggregatedData.map(d => d.genre))
+        .domain(aggregatedData.map(d => d.mp))
         .range([0, chartWidth])
         .padding(0.5);
 
     var yScale = d3.scaleLinear()
-        .domain([0, d3.max(aggregatedData, d => d.averageEnergy) + 0.2])
+        .domain([0, d3.max(aggregatedData, d => d.raptor_total) + 0.2])
         .range([chartHeight, 0]);
 
     var xAxis = d3.axisBottom(xScale);
@@ -92,9 +95,9 @@ function renderScene1(raw_data) {
 
         chartGroup.append("text")
     .attr("transform", "rotate(-90)")  // To rotate the text and make it vertical
-    .attr("y", -50) 
-    .attr("x", -chartHeight / 2)  
-    .attr("dy", "-3em")  
+    .attr("y", -50)
+    .attr("x", -chartHeight / 2)
+    .attr("dy", "-3em")
     .style("text-anchor", "middle")
     .text("Energy");
 
@@ -114,32 +117,32 @@ function renderScene1(raw_data) {
     chartGroup.selectAll("circle")
         .data(aggregatedData)
         .enter().append("circle")
-        .attr("cx", d => xScale(d.genre) + xScale.bandwidth() / 2)  // Align with center of band
-        .attr("cy", d => yScale(d.averageEnergy))
+        .attr("cx", d => xScale(d.mp) + xScale.bandwidth() / 2)  // Align with center of band
+        .attr("cy", d => yScale(d.raptor_total))
         .attr("r", 5)
         .style("fill", "#0077b6")
         .on("mouseover", function(event, d) {
             d3.select(this)
             .attr("r", 7)
             .style("fill", "#ff5733");
-    
+
         // Add tooltip
         chartGroup.append("text")
             .attr("id", "tooltip")
-            .attr("x", xScale(d.genre) + xScale.bandwidth() / 2)  // Center the tooltip text within the band
-            .attr("y", yScale(d.averageEnergy) - 15)
+            .attr("x", xScale(d.mp) + xScale.bandwidth() / 2)  // Center the tooltip text within the band
+            .attr("y", yScale(d.raptor_total) - 15)
             .attr("text-anchor", "middle")
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
             .attr("font-weight", "bold")
             .attr("fill", "black")
-            .text(`Danceability: ${d.averageDanceability}`);
+            .text(`Danceability: ${d.war_total}`);
         })
         .on("mouseout", function(d) {
             d3.select(this)
             .attr("r", 5)
             .style("fill", "#0077b6");
-    
+
         // Remove tooltip
         d3.select("#tooltip").remove();
         });
@@ -147,7 +150,7 @@ function renderScene1(raw_data) {
     // Add annotation
     const annotations = [{
         note: {
-            label: "Hover over each point to see danceability.",
+            label: "Hover over each point to see Wins Above Replacement.",
             title: "Note"
         },
         x: width / 2,
@@ -164,7 +167,7 @@ function renderScene1(raw_data) {
         .call(makeAnnotations);
 }
 
-  
+
 function renderScene2(raw_data) {
     clearScene();
     var aggregatedData = aggregateData2(raw_data);
@@ -199,9 +202,9 @@ function renderScene2(raw_data) {
 
         chartGroup.append("text")
     .attr("transform", "rotate(-90)")  // To rotate the text and make it vertical
-    .attr("y", -50) 
-    .attr("x", -chartHeight / 2)  
-    .attr("dy", "-3em")  
+    .attr("y", -50)
+    .attr("x", -chartHeight / 2)
+    .attr("dy", "-3em")
     .style("text-anchor", "middle")
     .text("Tempo");
 
@@ -229,7 +232,7 @@ function renderScene2(raw_data) {
             d3.select(this)
             .attr("r", 7)
             .style("fill", "#ff5733");
-    
+
         // Add tooltip
         chartGroup.append("text")
             .attr("id", "tooltip")
@@ -251,7 +254,7 @@ function renderScene2(raw_data) {
     // Remove tooltip
     d3.select("#tooltip").remove();
     });
-   
+
 
             // Add annotation
     const annotations = [{
@@ -262,7 +265,7 @@ function renderScene2(raw_data) {
         x: width / 2,
         y: margin.top / 2,
         dy: 0,
-        dx: 0   
+        dx: 0
     }];
 
     const makeAnnotations = d3.annotation()
@@ -271,9 +274,9 @@ function renderScene2(raw_data) {
     svg.append("g")
         .attr("class", "annotation-group")
         .call(makeAnnotations);
-  
+
   }
-  
+
 
 async function loadData() {
         const data = await d3.csv("Data/data.csv");
@@ -282,7 +285,7 @@ async function loadData() {
 
  function addParagraphForScene(sceneIndex) {
     const container = document.getElementById('text-container'); // assuming you have a div with id "sceneContainer" where you want to append the paragraph
-    container.innerHTML = ''; 
+    container.innerHTML = '';
     let paragraphContent;
     switch (sceneIndex) {
         case 0:
@@ -329,7 +332,7 @@ function aggregateData(data) {
         aggregatedData.push({
             genre: key,
             averageEnergy: value.totalEnergy / value.count,
-            averageDanceability: value.totalDanceability / value.count 
+            averageDanceability: value.totalDanceability / value.count
         });
     });
     aggregatedData.sort((a, b) => b.averageEnergy - a.averageEnergy);
@@ -356,7 +359,7 @@ function aggregateData2(data) {
         aggregatedData.push({
             genre: key,
             averageTempo: value.totalTempo / value.count,
-            averageValence: value.totalValence / value.count 
+            averageValence: value.totalValence / value.count
         });
     });
     aggregatedData.sort((a, b) => b.averageTempo - a.averageTempo);
@@ -370,7 +373,7 @@ function aggregateData2(data) {
     // Append text input boxes to the scene3-container
     attributes.forEach(attribute => {
         const div = container.append("div");
-        
+
         div.append("span")
             .text(`${attribute.charAt(0).toUpperCase() + attribute.slice(1)}: `);  // Capitalize attribute name
 
@@ -384,14 +387,14 @@ function aggregateData2(data) {
     container.append("button")
         .text("Show Top 10 Songs")
         .on("click", () => displaySongs(data));
-    
+
     container.append("div").attr("id", "songs-container");
 }
 
 function displaySongs(data) {
     const allSongs = data;
     const shuffledSongs = shuffle(allSongs);
-    const topSongs = shuffledSongs.slice(0, 10).map(song => song.trackName); 
+    const topSongs = shuffledSongs.slice(0, 10).map(song => song.trackName);
 
     const songContainer = d3.select("#songs-container");
 
