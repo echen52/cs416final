@@ -77,12 +77,12 @@ function renderScene1(raw_data) {
         chartHeight = height - margin.top - margin.bottom;
 
     var xScale = d3.scaleBand()
-        .domain(aggregatedData.map(d => d.mp))
+        .domain([0, d3.max(aggregatedData, d => d.mp) + 200])
         .range([0, chartWidth])
         .padding(0.5);
 
     var yScale = d3.scaleLinear()
-        .domain([0, d3.max(aggregatedData, d => d.raptor_total) + 0.2])
+        .domain([0, d3.max(aggregatedData, d => d.raptor_total) + 1])
         .range([chartHeight, 0]);
 
     var xAxis = d3.axisBottom(xScale);
