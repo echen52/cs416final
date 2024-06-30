@@ -76,10 +76,9 @@ function renderScene1(raw_data) {
         chartWidth = width - margin.left - margin.right,
         chartHeight = height - margin.top - margin.bottom;
 
-    var xScale = d3.scaleBand()
+    var xScale = d3.scaleLinear()
         .domain([0, 7000])
-        .range([0, chartWidth])
-        .padding(0.5);
+        .range([0, chartWidth]);
 
     var yScale = d3.scaleLinear()
         .domain([0, 13])
@@ -117,7 +116,7 @@ function renderScene1(raw_data) {
     chartGroup.selectAll("circle")
         .data(aggregatedData)
         .enter().append("circle")
-        .attr("cx", d => xScale(d.mp) + xScale.bandwidth() / 2)  // Align with center of band
+        .attr("cx", d => xScale(d.mp)  // Align with center of band
         .attr("cy", d => yScale(d.raptor_total))
         .attr("r", 5)
         .style("fill", "#0077b6")
@@ -136,7 +135,7 @@ function renderScene1(raw_data) {
             .attr("font-size", "11px")
             .attr("font-weight", "bold")
             .attr("fill", "black")
-            .text(`Danceability: ${d.war_total}`);
+            .text(`WAR: ${d.war_total}`);
         })
         .on("mouseout", function(d) {
             d3.select(this)
@@ -278,10 +277,6 @@ function renderScene2(raw_data) {
   }
 
 
-async function loadData() {
-        const data = await d3.csv("Data/data.csv");
-        return data;
- }
 
  function addParagraphForScene(sceneIndex) {
     const container = document.getElementById('text-container'); // assuming you have a div with id "sceneContainer" where you want to append the paragraph
