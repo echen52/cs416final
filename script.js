@@ -35,6 +35,9 @@ document.getElementById('previous').addEventListener('click', function() {
         document.getElementById('start-over').style.display = 'none';
     }
 });
+
+
+
 document.getElementById('start-over').addEventListener('click', function() {
     clearScene3Content()
     currentScene = 0;
@@ -112,7 +115,7 @@ function renderScene1(raw_data) {
 
     // Draw the scatterplot
     chartGroup.selectAll("circle")
-        .data(aggregatedData)
+        .data(raw_data)
         .enter().append("circle")
         .attr("cx", d => xScale(d.mp)  // Align with center of band
         .attr("cy", d => yScale(d.raptor_total))
