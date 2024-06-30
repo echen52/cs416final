@@ -1,14 +1,5 @@
-async function loadData() {
-          const data = await d3.csv("Data/RAPTOR_ALL_T20.csv");
-          console.log(data);
-    
-   }
-
-loadData();
-
-
-function renderScene1(raw_data) {
-    // var aggregatedData = aggregateData(raw_data);
+async function renderScene1() {
+d3.csv("Data/RAPTOR_ALL_T20.csv").then(function (raw_data) {
     var aggregatedData = raw_data;
     var svg = d3.select("svg"),
         width = +svg.attr("width"),
@@ -107,7 +98,7 @@ function renderScene1(raw_data) {
     svg.append("g")
         .attr("class", "annotation-group1")
         .call(makeAnnotations);
-}
+}}
 
 
-renderScene1(data);
+
