@@ -108,3 +108,6 @@ function renderScene1(raw_data) {
         .attr("class", "annotation-group1")
         .call(makeAnnotations);
 }
+
+
+renderScene1(data);
