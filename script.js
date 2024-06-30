@@ -110,7 +110,7 @@ var bar_tooltip = d3.select("body")
     .style("color", "white")
 
 async function load1() {
-    d3.csv("Data/data.csv").then(function (data_given) {
+    d3.csv("Data/cars2017.csv").then(function (data_given) {
         // var makes = [];
         // var highway_mpgs = [];
         // var city_mpgs = []
@@ -257,7 +257,7 @@ var noHighlight = function (d) {
 }
 
 async function load2() {
-    d3.csv("Data/data.csv").then(function (d) {
+    d3.csv("Data/cars2017").then(function (d) {
         scene2.selectAll("p")
             .append("g")
             .data(d)
@@ -305,7 +305,7 @@ var scatter_tooltip = d3.select("body")
     .style("color", "white")
 
 async function load3() {
-    d3.csv("Data/data.csv").then(function (data) {
+    d3.csv("Data/cars2017.csv").then(function (data) {
 
         var fuelScale = d3.scaleBand()
             .range([0, width])
