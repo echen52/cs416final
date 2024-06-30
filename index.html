@@ -1,28 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
 <head>
-    <meta charset="UTF-8">
-    <h1 id="pageTitle">Most Impactful NBA Players of 2023</h1>
-    <link rel="stylesheet">
+    <title>Fuel Efficiency</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
+<body onload="load1(); load2(); load3();">
+    <h1 id="intro">Fuel Efficiency of Automobiles in 2017</h1>
+    <div>
+        <span class="italic">By Amrutha Gujjar - UIUC CS 498 - July 2020</span>
+        <hr>
+        <img src="basketball.png" alt="car" width="240" height="120">
+        <h3>
+            Given the increasing effects of climate change, and the high volume of automobiles in the world, we must seek to better understand
+            the mileages of various automobiles. There are many factors that can affect the mileage of your car (See:
+            <a href="https://www.fueleconomy.gov/feg/factors.shtml#:~:text=Vehicle%20Maintenance,older%20cars%20with%20carbureted%20engines.">Link</a>) but in this interactive visualization, we will explore 2017 data about the the respective highway and
+            city MPGs of automobiles, with respect to just a few of these factors, like engine cylinders, fuel type and the
+            make of the vehicle.
+        </h3>
+        <ul>
+            <li>
+                <a href="#one" class="contents">Which car brands will get you good mileage?</a>
+            </li>
+            <li>
+                <a href="#two" class="contents">Do Engine Cylinders Affect Mileage?</a>
+            </li>
+            <li>
+                <a href="#three" class="contents">What is the relationship between fuel type, number of engine cylinders and the mileage?</a>
+            </li>
+        </ul>
+        <hr>
 
-<body onload='init()'>
-    <p id="explanation">
-        In the NBA, team success can be determined by a few superstar level players. This presentation aims to uncover who the top 20 players in
-            the NBA were in 2023 and how they compare to one another on offense and defense. Then, the presentation examines how successful each player's
-            team that season. Last, the presentation looks at if the player contributed a key part of that team success.
+    </div>
+    <a href="#two" class="back">Next</a>
+    <h2 id="one">Which car brands will get you good mileage?</h2>
+    <p>See how the highway and city mileages compare for major car brands. Click on the buttons to explore each category. </p>
+    <div>
+        <button id="highway" onclick="change('AverageHighwayMPG')">Average Highway MPG</button>
+        <button id="city" onclick="change('AverageCityMPG')">Average City MPG</button>
+    </div>
+    <svg id="scene1" width=1050 height=1100>
+        <text x="900" y="700">Good gas mileage</text>
+
+        <line x1="0" y1="700" x2="900" y2="700" stroke="black" stroke-dasharray="4" />
+    </svg>
+
+    <hr>
+    <a href="#intro" class="back">Back to Top</a>
+    <a href="#one" class="back">Previous</a>
+    <a href="#three" class="back">Next</a>
+
+    <h2 id="two">Do Engine Cylinders Affect Mileage?</h2>
+    <p>Hover over each engine cylinder category in the legend to better understand the trend. Additionally, hovering over each
+        data point itself will indicate which make of the car you are hovering over via an interactive tooltip.
     </p>
+    <svg id="scene2" width=1050 height=400></svg>
+    <hr>
 
-<svg id="scene1" width=1050 height=1100>
-       
+    <a href="#intro" class="back">Back to Top</a>
+    <a href="#two" class="back">Previous</a>
+    <h2 id="three">What is the relationship between fuel type, number of engine cylinders and the mileage?</h2>
+    <p>This visualization shows us the relationship between all three fields: fuel type, engine cylinder, and average MPG. The size of the 
+        plotted point indicates the mileage, while the density represents the relative value of the cars that fall into that configuration of fuel type and
+        cylinder number.
+        </p>
+    <svg id="scene3" width=1050 height=1200></svg>
 
-</svg>
+    <!-- Script -->
+    <script src="script.js"></script>
 
+    <hr>
+    <a href="#intro" class="back">Back to Top</a>
+    
+    <hr>
 
+    <p>
+        <a href="#intro" class="back">Back to Top</a>
 
-
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script type="text/javascript" src='script.js' charset='utf-8'></script>
+        <h2>Acknowledgements</h2>
+        <p>Listed here are the various sources I used for learning about D3. Elements of this visualization are drawn from the
+            examples cited below.
+        </p>
+        <ul>
+            <li>
+                <a href="https://flunky.github.io/cars2017.csv">Data Source</a>
+            </li>
+            <li>
+                <a href="https://bl.ocks.org/d3noob/4e4485d94aebf63ae8059258c40f2609">Tooltips</a>
+            </li>
+            <li>
+                <a href="https://www.d3-graph-gallery.com/graph/bubble_tooltip.html">Tooltips 2</a>
+            </li>
+            <li>
+                <a href="https://observablehq.com/@d3/d3-scaleordinal">ScaleOrdinal</a>
+            </li>
+            <li>
+                <a href="https://www.d3-graph-gallery.com/graph/bubble_template.html">Opacity change on hover</a>
+            </li>
+        </ul>
+    </p>
 </body>
+
 </html>
