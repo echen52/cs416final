@@ -257,7 +257,7 @@ var noHighlight = function (d) {
 }
 
 async function load2() {
-    d3.csv("Data/cars2017").then(function (d) {
+    d3.csv("Data/cars2017.csv").then(function (d) {
         scene2.selectAll("p")
             .append("g")
             .data(d)
