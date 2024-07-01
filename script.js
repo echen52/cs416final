@@ -36,10 +36,10 @@ var yAxis = d3.axisLeft()
     .ticks(10);
 
 // axis appends
-// scene1.append("g")
-//     .attr("transform", "translate(50,20)")
-//     .attr("class", "axis")
-//     .call(yAxis);
+scene1.append("g")
+    .attr("transform", "translate(50,20)")
+    .attr("class", "axis")
+    .call(yAxis);
 
 scene2.append("g")
     .attr("transform", "translate(50,360)")
@@ -47,18 +47,18 @@ scene2.append("g")
     .call(xAxis);
 
 // axis labels
-// scene1.append('text')
-//     .attr('x', -500)
-//     .attr('y', 15)
-//     .attr('transform', 'rotate(-90)')
-//     .attr('text-anchor', 'middle')
-//     .text('Mileage')
+scene1.append('text')
+    .attr('x', -500)
+    .attr('y', 15)
+    .attr('transform', 'rotate(-90)')
+    .attr('text-anchor', 'middle')
+    .text('Mileage')
 
-// scene1.append('text')
-//     .attr('x', 500)
-//     .attr('y', 1050)
-//     .attr('text-anchor', 'middle')
-//     .text('Cars')
+scene1.append('text')
+    .attr('x', 500)
+    .attr('y', 1050)
+    .attr('text-anchor', 'middle')
+    .text('Cars')
 
 scene2.append('text')
     .attr('x', 500)
@@ -107,143 +107,68 @@ var bar_tooltip = d3.select("body")
     .style("color", "white")
 
 async function load1() {
-    d3.csv("Data/NBA24_team.csv").then(function (data_given) {
-
-    var xScale = d3.scaleLinear()
-        .domain([0, d3.max(data_given, d => d.D_PTS) + 0.2])
-        .range([0, width]);
-
-    var yScale = d3.scaleLinear()
-        .domain([0, d3.max(data_given, d => d.PTS) + 0.2])
-        .range([height, 0]);
-
-    var xAxis1 = d3.axisBottom(xScale);
-    var yAxis1 = d3.axisLeft(yScale);
-
-
-    // Draw the axes
-    var scene1 = svg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-scene1.append("text")
-    .attr("transform", "rotate(-90)")  // To rotate the text and make it vertical
-    .attr("y", -50) 
-    .attr("x", -chartHeight / 2)  
-    .attr("dy", "-3em")  
-    .style("text-anchor", "middle")
-    .text("Energy");
-
-    scene1.append("g")
-        .attr("transform", "translate(0," + chartHeight + ")")
-        .call(xAxis1)
-        .selectAll(".tick text")
-        .attr("transform", "rotate(-45)")  // Rotates text by 45 degrees
-        .style("text-anchor", "end")
-        .attr("dx", "-0.5em")
-        .attr("dy", "0.5em");
-
-    scene1.append("g")
-        .call(yAxis1);
-
-    // Draw the scatterplot
-    scene1.selectAll("circle")
-        .data(data_given)
-        .enter().append("circle")
-        .attr("cx", d => xScale(d.D_PTS) )  // Align with center of band
-        .attr("cy", d => yScale(d.PTS))
-        .attr("r", 5)
-        .style("fill", "#0077b6")
-        .on("mouseover", function(event, d) {
-            d3.select(this)
-            .attr("r", 7)
-            .style("fill", "#ff5733");
-	}
-    
-        // Add tooltip
-        // scene1.append("text")
-        //     .attr("id", "tooltip")
-        //     .attr("x", xScale(d.genre) + xScale.bandwidth() / 2)  // Center the tooltip text within the band
-        //     .attr("y", yScale(d.averageEnergy) - 15)
-        //     .attr("text-anchor", "middle")
-        //     .attr("font-family", "sans-serif")
-        //     .attr("font-size", "11px")
-        //     .attr("font-weight", "bold")
-        //     .attr("fill", "black")
-        //     .text(`Danceability: ${d.averageDanceability}`);
-        // })
-        // .on("mouseout", function(d) {
-        //     d3.select(this)
-        //     .attr("r", 5)
-        //     .style("fill", "#0077b6");
-    
-        // // Remove tooltip
-        // d3.select("#tooltip").remove();
-        // });
-	    
-// var makeScale = d3.scaleBand()
-//             .range([0, width])
-//             .domain(data_given.map(function (d) { return d.Make; }))
-
-    //     var makeAxis = d3.axisBottom()
-    //         .scale(makeScale)
-    //         .ticks(10);
-
-    //     scene1.append("g")
-    //         .attr("transform", "translate(50,950)")
-    //         .attr("class", "axis")
-    //         .call(makeAxis)
-    //         .selectAll("text")
-    //         .attr("transform", "translate(-10,0)rotate(-30)")
-    //         .style("text-anchor", "end");
-
-    //     scene1.selectAll("mybar")
-    //         .data(data_given)
-    //         .enter()
-    //         .append("rect")
-    //         .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
-    //         .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-    //         .attr("width", makeScale.bandwidth() - 10)
-    //         .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-    //         .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
-    //             bar_tooltip.transition()
-    //                 .duration(200)
-    //                 .style("opacity", .9);
-    //             bar_tooltip.html(makes[i])
-    //                 .style("left", (d3.event.pageX) + "px")
-    //                 .style("top", (d3.event.pageY - 28) + "px");
-    //         })
-    //         .on("mouseout", function (d) {
-    //             bar_tooltip.transition()
-    //                 .duration(500)
-    //                 .style("opacity", 0);
-    //         });
-    // })
-
-
-
+    d3.csv("Data/cars2017.csv").then(function (data_given) {
 
 	    
+var makeScale = d3.scaleBand()
+            .range([0, width])
+            .domain(data_given.map(function (d) { return d.Make; }))
+
+        var makeAxis = d3.axisBottom()
+            .scale(makeScale)
+            .ticks(10);
+
+        scene1.append("g")
+            .attr("transform", "translate(50,950)")
+            .attr("class", "axis")
+            .call(makeAxis)
+            .selectAll("text")
+            .attr("transform", "translate(-10,0)rotate(-30)")
+            .style("text-anchor", "end");
+
+        scene1.selectAll("mybar")
+            .data(data_given)
+            .enter()
+            .append("rect")
+            .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
+            .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+            .attr("width", makeScale.bandwidth() - 10)
+            .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+            .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+                bar_tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                bar_tooltip.html(makes[i])
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function (d) {
+                bar_tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+    })
 }
- }
+
 
 // This function is called by the buttons on top of the plot
-// function change(setting) {
-//     if (setting === "AverageHighwayMPG") {
-//         scene1.selectAll("rect")
-//             .transition()
-//             .duration(2000)
-//             .attr("fill", "#5E4FA2")
-//             .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-//             .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-//     } else {
-//         scene1.selectAll("rect")
-//             .transition()
-//             .duration(2000)
-//             .attr("fill", "#66C2A5")
-//             .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
-//             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
-//     }
-// }
+function change(setting) {
+    if (setting === "AverageHighwayMPG") {
+        scene1.selectAll("rect")
+            .transition()
+            .duration(2000)
+            .attr("fill", "#5E4FA2")
+            .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+            .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+    } else {
+        scene1.selectAll("rect")
+            .transition()
+            .duration(2000)
+            .attr("fill", "#66C2A5")
+            .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
+            .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
+    }
+}
 
 
 
