@@ -185,7 +185,7 @@ async function load1() {
     scene1.append("g")
         .attr("class", "annotation-group1")
         .call(makeAnnotations);
-}
+
 
 
 
