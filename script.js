@@ -41,7 +41,7 @@ var yAxis = d3.axisLeft()
 scene2.append("g")
     .attr("transform", "translate(50,360)")
     .attr("class", "axis")
-    .call(xAxis);
+    .call(xAxis)
 
 // axis labels
 
@@ -82,18 +82,18 @@ scene1.append('text')
     .attr('text-anchor', 'middle')
     .text('Defensive Rating')
 
-var makes = ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler",
-    "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini",
-    "Land Rover", "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda", "McLaren Automotive", "Mercedes-Benz", "MINI", "Mitsubishi",
-    "Nissan", "Porsche", "Ram", "Rolls-Royce", "Roush Performance", "smart", "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo"];
-
-var highway_mpgs = ["35", "33", "19", "30", "22", "41", "27", "30", "29", "25", "24", "22", "103", "96", "24", "29", "38", "122",
-    "30", "39", "27", "92", "21", "28", "30", "29", "24", "24", "34", "23", "82", "33", "102", "101", "27", "21", "19", "23", "39", "27",
-    "98", "30", "28", "29"];
-
-var city_mpgs = ["25", "24", "12", "23", "13", "30", "20", "22", "21", "16", "15", "16", "121", "118", "17", "21", "30", "150", "22",
-    "30", "19", "120", "14", "22", "22", "23", "17", "16", "26", "16", "85", "24", "121", "124", "21", "14", "12", "14", "32", "21", "92",
-    "23", "21", "22"];
+// var makes = ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler",
+//     "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini",
+//     "Land Rover", "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda", "McLaren Automotive", "Mercedes-Benz", "MINI", "Mitsubishi",
+//     "Nissan", "Porsche", "Ram", "Rolls-Royce", "Roush Performance", "smart", "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo"];
+//
+// var highway_mpgs = ["35", "33", "19", "30", "22", "41", "27", "30", "29", "25", "24", "22", "103", "96", "24", "29", "38", "122",
+//     "30", "39", "27", "92", "21", "28", "30", "29", "24", "24", "34", "23", "82", "33", "102", "101", "27", "21", "19", "23", "39", "27",
+//     "98", "30", "28", "29"];
+//
+// var city_mpgs = ["25", "24", "12", "23", "13", "30", "20", "22", "21", "16", "15", "16", "121", "118", "17", "21", "30", "150", "22",
+//     "30", "19", "120", "14", "22", "22", "23", "17", "16", "26", "16", "85", "24", "121", "124", "21", "14", "12", "14", "32", "21", "92",
+//     "23", "21", "22"];
 
 var bar_tooltip = d3.select("body")
     .append("div")
@@ -120,20 +120,17 @@ async function load1() {
 
         var scatterScaleX = d3.scaleLinear()
             .range([0, width])
-            .domain([104, 126]);
+            .domain([104, 126])
 
 
         var scatterScaleY = d3.scaleLinear()
             .range([height, 0])
-            .domain([104, 126]);
+            .domain([104, 126])
 
-        var xAxis1 = d3.axisBottom(scatterScaleX);
-        var yAxis1 = d3.axisLeft(scatterScaleY);
+        var xAxis1 = d3.axisBottom(scatterScaleX)
+        var yAxis1 = d3.axisLeft(scatterScaleY)
 
-        // scene1.append("g")
-        //     .attr("transform", "translate(50,20)")
-        //     .attr("class", "axis")
-        //     .call(yAxis1);
+
 
 
         scene1.append("g")
@@ -142,14 +139,12 @@ async function load1() {
             .call(xAxis1)
             .selectAll("text")
             .attr("transform", "translate(-10,0)rotate(-30)")
-            .style("text-anchor", "end");
+            .style("text-anchor", "end")
 
-        // scene1.append("g")
-        //       .attr("transform", "translate(50,20)")
-        //       .attr("class", "axis")
-        //       .call(yAxis1);
-        //       .selectAll("text")
-        //       .style("text-anchor", "end");
+        scene1.append("g")
+            .attr("transform", "translate(50,20)")
+            .attr("class", "axis")
+            .call(yAxis1)
 
 
        // scene1.append("g")
