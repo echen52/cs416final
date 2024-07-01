@@ -144,6 +144,14 @@ async function load1() {
             .attr("transform", "translate(-10,0)rotate(-30)")
             .style("text-anchor", "end");
 
+        scene1.append("g")
+              .attr("transform", "translate(50,20)")
+              .attr("class", "axis")
+              .call(yAxis1);
+              .selectAll("text")
+              .style("text-anchor", "end");
+
+
        // scene1.append("g")
        //        .attr("transform", "translate(50,950)")
        //          .attr("class", "axis")
