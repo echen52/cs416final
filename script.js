@@ -147,26 +147,6 @@ async function load1() {
     //                 .style("opacity", 0);
     //         });
     // })
-}
-
-// This function is called by the buttons on top of the plot
-// function change(setting) {
-//     if (setting === "AverageHighwayMPG") {
-//         scene1.selectAll("rect")
-//             .transition()
-//             .duration(2000)
-//             .attr("fill", "#5E4FA2")
-//             .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-//             .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-//     } else {
-//         scene1.selectAll("rect")
-//             .transition()
-//             .duration(2000)
-//             .attr("fill", "#66C2A5")
-//             .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
-//             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
-//     }
-// }
 
 var colorScale = d3.scale.category20()
 var xScale = d3.scaleLinear()
@@ -253,6 +233,31 @@ var yScale = d3.scaleLinear()
   //     .style('text-anchor','end')
   //     .text('OFFENSE')
 })
+
+
+	    
+}
+
+// This function is called by the buttons on top of the plot
+// function change(setting) {
+//     if (setting === "AverageHighwayMPG") {
+//         scene1.selectAll("rect")
+//             .transition()
+//             .duration(2000)
+//             .attr("fill", "#5E4FA2")
+//             .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+//             .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+//     } else {
+//         scene1.selectAll("rect")
+//             .transition()
+//             .duration(2000)
+//             .attr("fill", "#66C2A5")
+//             .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
+//             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
+//     }
+// }
+
+
 
 
 
