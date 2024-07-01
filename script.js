@@ -108,15 +108,25 @@ var bar_tooltip = d3.select("body")
 
 async function load1() {
     d3.csv("Data/cars2017.csv").then(function (data_given) {
+        // var makes = [];
+        // var highway_mpgs = [];
+        // var city_mpgs = []
+        // for (var key of Object.values(data_given)) {
+        //     if (!makes.includes(key.Make)) {
+        //         makes.push(key.Make)
+        //         highway_mpgs.push(key.AverageHighwayMPG)
+        //         city_mpgs.push(key.AverageCityMPG)
+        //     }
+        // }
+        // console.log(city_mpgs)
 
-	    
-var makeScale = d3.scaleBand()
+        var makeScale = d3.scaleBand()
             .range([0, width])
             .domain(data_given.map(function (d) { return d.Make; }))
 
         var makeAxis = d3.axisBottom()
             .scale(makeScale)
-            .ticks(10);
+            .ticks(5);
 
         scene1.append("g")
             .attr("transform", "translate(50,950)")
@@ -150,7 +160,6 @@ var makeScale = d3.scaleBand()
     })
 }
 
-
 // This function is called by the buttons on top of the plot
 function change(setting) {
     if (setting === "AverageHighwayMPG") {
@@ -169,8 +178,6 @@ function change(setting) {
             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
     }
 }
-
-
 
 
 
