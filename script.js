@@ -47,18 +47,7 @@ scene2.append("g")
     .call(xAxis);
 
 // axis labels
-scene1.append('text')
-    .attr('x', -500)
-    .attr('y', 15)
-    .attr('transform', 'rotate(-90)')
-    .attr('text-anchor', 'middle')
-    .text('Mileage')
 
-scene1.append('text')
-    .attr('x', 500)
-    .attr('y', 1050)
-    .attr('text-anchor', 'middle')
-    .text('Cars')
 
 scene2.append('text')
     .attr('x', 500)
@@ -82,6 +71,19 @@ scene3.append('text')
 // --------------------------------------------------------------------------------//
 // SCENE ONE ----------------------------------------------------------------------//
 // --------------------------------------------------------------------------------//
+
+scene1.append('text')
+    .attr('x', -500)
+    .attr('y', 15)
+    .attr('transform', 'rotate(-90)')
+    .attr('text-anchor', 'middle')
+    .text('Offensive Rating')
+
+scene1.append('text')
+    .attr('x', 500)
+    .attr('y', 1050)
+    .attr('text-anchor', 'middle')
+    .text('Defensive Rating')
 
 var makes = ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler",
     "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini",
@@ -119,14 +121,12 @@ async function load1() {
         //     .ticks(5);
         var scatterScaleX = d3.scaleLinear()
             .range([0, width])
-            .domain([d3.min(data_given, d => d.D_PTS),
-              d3.max(data_given, d => d.D_PTS)]);
+            .domain([105, 125]);
 
 
         var scatterScaleY = d3.scaleLinear()
             .range([height, 0])
-            .domain([d3.min(data_given, d => d.PTS),
-            d3.max(data_given, d => d.PTS)]);
+            .domain([105, 125]);
 
         var xAxis1 = d3.axisBottom(scatterScaleX);
         var yAxis1 = d3.axisLeft(scatterScaleY);
@@ -140,8 +140,13 @@ async function load1() {
             .attr("transform", "translate(-10,0)rotate(-30)")
             .style("text-anchor", "end");
 
-        scene1.append("g")
-             .call(yAxis1);
+       scene1.append("g")
+              .attr("transform", "translate(50,950)")
+                .attr("class", "axis")
+                .call(yAxis1)
+                .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-30)")
+                .style("text-anchor", "end");
 
         // scene1.selectAll("mybar")
         //     .data(data_given)
