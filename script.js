@@ -36,10 +36,7 @@ var yAxis = d3.axisLeft()
     .ticks(10);
 
 // axis appends
-scene1.append("g")
-    .attr("transform", "translate(50,20)")
-    .attr("class", "axis")
-    .call(yAxis);
+
 
 scene2.append("g")
     .attr("transform", "translate(50,360)")
@@ -121,15 +118,20 @@ async function load1() {
         //     .ticks(5);
         var scatterScaleX = d3.scaleLinear()
             .range([0, width])
-            .domain([105, 125]);
+            .domain([104, 126]);
 
 
         var scatterScaleY = d3.scaleLinear()
             .range([height, 0])
-            .domain([105, 125]);
+            .domain([104, 126]);
 
         var xAxis1 = d3.axisBottom(scatterScaleX);
         var yAxis1 = d3.axisLeft(scatterScaleY);
+
+        scene1.append("g")
+            .attr("transform", "translate(50,20)")
+            .attr("class", "axis")
+            .call(yAxis1);
 
 
         scene1.append("g")
@@ -140,13 +142,13 @@ async function load1() {
             .attr("transform", "translate(-10,0)rotate(-30)")
             .style("text-anchor", "end");
 
-       scene1.append("g")
-              .attr("transform", "translate(50,950)")
-                .attr("class", "axis")
-                .call(yAxis1)
-                .selectAll("text")
-                .attr("transform", "translate(-10,0)rotate(-30)")
-                .style("text-anchor", "end");
+       // scene1.append("g")
+       //        .attr("transform", "translate(50,950)")
+       //          .attr("class", "axis")
+       //          .call(yAxis1)
+       //          .selectAll("text")
+       //          .attr("transform", "translate(-10,0)rotate(-30)")
+       //          .style("text-anchor", "end");
 
         // scene1.selectAll("mybar")
         //     .data(data_given)
