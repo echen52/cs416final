@@ -107,68 +107,160 @@ var bar_tooltip = d3.select("body")
     .style("color", "white")
 
 async function load1() {
-    d3.csv("Data/cars2017.csv").then(function (data_given) {
+    d3.csv("Data/NBA24_team.csv").then(function (data_given) {
 
 
-        var makeScale = d3.scaleBand()
-            .range([0, width])
-            .domain(data_given.map(function (d) { return d.Make; }))
+     //    var makeScale = d3.scale.linear()
+     //    .domain([
+    	// d3.min([0,d3.min(data,function (d) { return d.D_PTS })]),
+    	// d3.max([0,d3.max(data,function (d) { return d.D_PTS })])
+    	// ])
+     //    .range([0,w])
 
-        var makeAxis = d3.axisBottom()
-            .scale(makeScale)
-            .ticks(5);
+    //     var makeAxis = d3.axisBottom()
+    //         .scale(makeScale)
+    //         .ticks(10);
 
-        scene1.append("g")
-            .attr("transform", "translate(50,950)")
-            .attr("class", "axis")
-            .call(makeAxis)
-            .selectAll("text")
-            .attr("transform", "translate(-10,0)rotate(-30)")
-            .style("text-anchor", "end");
+    //     scene1.append("g")
+    //         .attr("transform", "translate(50,950)")
+    //         .attr("class", "axis")
+    //         .call(makeAxis)
+    //         .selectAll("text")
+    //         .attr("transform", "translate(-10,0)rotate(-30)")
+    //         .style("text-anchor", "end");
 
-        scene1.selectAll("mybar")
-            .data(data_given)
-            .enter()
-            .append("rect")
-            .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
-            .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-            .attr("width", makeScale.bandwidth() - 10)
-            .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-            .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
-                bar_tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                bar_tooltip.html(makes[i])
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
-            })
-            .on("mouseout", function (d) {
-                bar_tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            });
-    })
+    //     scene1.selectAll("mybar")
+    //         .data(data_given)
+    //         .enter()
+    //         .append("rect")
+    //         .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
+    //         .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+    //         .attr("width", makeScale.bandwidth() - 10)
+    //         .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+    //         .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+    //             bar_tooltip.transition()
+    //                 .duration(200)
+    //                 .style("opacity", .9);
+    //             bar_tooltip.html(makes[i])
+    //                 .style("left", (d3.event.pageX) + "px")
+    //                 .style("top", (d3.event.pageY - 28) + "px");
+    //         })
+    //         .on("mouseout", function (d) {
+    //             bar_tooltip.transition()
+    //                 .duration(500)
+    //                 .style("opacity", 0);
+    //         });
+    // })
 }
 
 // This function is called by the buttons on top of the plot
-function change(setting) {
-    if (setting === "AverageHighwayMPG") {
-        scene1.selectAll("rect")
-            .transition()
-            .duration(2000)
-            .attr("fill", "#5E4FA2")
-            .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-            .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-    } else {
-        scene1.selectAll("rect")
-            .transition()
-            .duration(2000)
-            .attr("fill", "#66C2A5")
-            .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
-            .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
-    }
-}
+// function change(setting) {
+//     if (setting === "AverageHighwayMPG") {
+//         scene1.selectAll("rect")
+//             .transition()
+//             .duration(2000)
+//             .attr("fill", "#5E4FA2")
+//             .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+//             .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+//     } else {
+//         scene1.selectAll("rect")
+//             .transition()
+//             .duration(2000)
+//             .attr("fill", "#66C2A5")
+//             .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
+//             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
+//     }
+// }
 
+var colorScale = d3.scale.category20()
+  var xScale = d3.scale.linear()
+    .domain([
+    	d3.min([0,d3.min(data,function (d) { return d.D_PTS })]),
+    	d3.max([0,d3.max(data,function (d) { return d.D_PTS })])
+    	])
+    .range([0,w])
+  var yScale = d3.scale.linear()
+    .domain([
+    	d3.min([0,d3.min(data,function (d) { return d.PTS })]),
+    	d3.max([0,d3.max(data,function (d) { return d.PTS })])
+    	])
+    .range([h,0])
+	// SVG
+	// var svg = body.append('svg')
+	//     .attr('height',h + margin.top + margin.bottom)
+	//     .attr('width',w + margin.left + margin.right)
+	//   .append('g')
+	//     .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+	// X-axis
+	var xAxis = d3.svg.axis()
+	  .scale(xScale)
+	  .tickFormat(formatPercent)
+	  .ticks(5)
+	  .orient('bottom')
+  // Y-axis
+	var yAxis = d3.svg.axis()
+	  .scale(yScale)
+	  .tickFormat(formatPercent)
+	  .ticks(5)
+	  .orient('left')
+  // Circles
+  var circles = scene1.selectAll('circle')
+      .data(data_given)
+      .enter()
+    .append('circle')
+      .attr('cx',function (d) { return xScale(d.asd) })
+      .attr('cy',function (d) { return yScale(d.aror) })
+      .attr('r','10')
+      .attr('stroke','black')
+      .attr('stroke-width',1)
+      .attr('fill',function (d,i) { return colorScale(i) })
+      .on('mouseover', function () {
+        d3.select(this)
+          .transition()
+          .duration(500)
+          .attr('r',20)
+          .attr('stroke-width',3)
+      })
+      .on('mouseout', function () {
+        d3.select(this)
+          .transition()
+          .duration(500)
+          .attr('r',10)
+          .attr('stroke-width',1)
+      })
+    .append('title') // Tooltip
+      .text(function (d) { return d.variable +
+                           '\nReturn: ' + d.D_PTS +
+                           '\nStd. Dev.: ' + d.PTS })
+  // X-axis
+  scene1.append('g')
+      .attr('class','axis')
+      .attr('transform', 'translate(0,' + h + ')')
+      .call(xAxis)
+    .append('text') // X-axis Label
+      .attr('class','label')
+      .attr('y',-10)
+      .attr('x',w)
+      .attr('dy','.71em')
+      .style('text-anchor','end')
+      .text('DEFENSE')
+  // Y-axis
+  scene1.append('g')
+      .attr('class', 'axis')
+      .call(yAxis)
+    .append('text') // y-axis Label
+      .attr('class','label')
+      .attr('transform','rotate(-90)')
+      .attr('x',0)
+      .attr('y',5)
+      .attr('dy','.71em')
+      .style('text-anchor','end')
+      .text('OFFENSE')
+})
+
+
+
+                                       
 // --------------------------------------------------------------------------------// 
 // SCENE TWO ----------------------------------------------------------------------//
 // --------------------------------------------------------------------------------// 
