@@ -36,10 +36,10 @@ var yAxis = d3.axisLeft()
     .ticks(10);
 
 // axis appends
-scene1.append("g")
-    .attr("transform", "translate(50,20)")
-    .attr("class", "axis")
-    .call(yAxis);
+// scene1.append("g")
+//     .attr("transform", "translate(50,20)")
+//     .attr("class", "axis")
+//     .call(yAxis);
 
 scene2.append("g")
     .attr("transform", "translate(50,360)")
@@ -47,18 +47,18 @@ scene2.append("g")
     .call(xAxis);
 
 // axis labels
-scene1.append('text')
-    .attr('x', -500)
-    .attr('y', 15)
-    .attr('transform', 'rotate(-90)')
-    .attr('text-anchor', 'middle')
-    .text('Mileage')
+// scene1.append('text')
+//     .attr('x', -500)
+//     .attr('y', 15)
+//     .attr('transform', 'rotate(-90)')
+//     .attr('text-anchor', 'middle')
+//     .text('Mileage')
 
-scene1.append('text')
-    .attr('x', 500)
-    .attr('y', 1050)
-    .attr('text-anchor', 'middle')
-    .text('Cars')
+// scene1.append('text')
+//     .attr('x', 500)
+//     .attr('y', 1050)
+//     .attr('text-anchor', 'middle')
+//     .text('Cars')
 
 scene2.append('text')
     .attr('x', 500)
@@ -109,6 +109,77 @@ var bar_tooltip = d3.select("body")
 async function load1() {
     d3.csv("Data/NBA24_team.csv").then(function (data_given) {
 
+    var xScale = d3.scaleLinear()
+        .domain([0, d3.max(data_given, d => d.D_PTS) + 0.2])
+        .range([0, width]);
+
+    var yScale = d3.scaleLinear()
+        .domain([0, d3.max(data_given, d => d.PTS) + 0.2])
+        .range([height, 0]);
+
+    var xAxis1 = d3.axisBottom(xScale);
+    var yAxis1 = d3.axisLeft(yScale);
+
+
+    // Draw the axes
+    var scene1 = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+scene1.append("text")
+    .attr("transform", "rotate(-90)")  // To rotate the text and make it vertical
+    .attr("y", -50) 
+    .attr("x", -chartHeight / 2)  
+    .attr("dy", "-3em")  
+    .style("text-anchor", "middle")
+    .text("Energy");
+
+    scene1.append("g")
+        .attr("transform", "translate(0," + chartHeight + ")")
+        .call(xAxis1)
+        .selectAll(".tick text")
+        .attr("transform", "rotate(-45)")  // Rotates text by 45 degrees
+        .style("text-anchor", "end")
+        .attr("dx", "-0.5em")
+        .attr("dy", "0.5em");
+
+    scene1.append("g")
+        .call(yAxis1);
+
+    // Draw the scatterplot
+    scene1.selectAll("circle")
+        .data(data_given)
+        .enter().append("circle")
+        .attr("cx", d => xScale(d.D_PTS) )  // Align with center of band
+        .attr("cy", d => yScale(d.PTS))
+        .attr("r", 5)
+        .style("fill", "#0077b6")
+        .on("mouseover", function(event, d) {
+            d3.select(this)
+            .attr("r", 7)
+            .style("fill", "#ff5733");
+	}
+    
+        // Add tooltip
+        // scene1.append("text")
+        //     .attr("id", "tooltip")
+        //     .attr("x", xScale(d.genre) + xScale.bandwidth() / 2)  // Center the tooltip text within the band
+        //     .attr("y", yScale(d.averageEnergy) - 15)
+        //     .attr("text-anchor", "middle")
+        //     .attr("font-family", "sans-serif")
+        //     .attr("font-size", "11px")
+        //     .attr("font-weight", "bold")
+        //     .attr("fill", "black")
+        //     .text(`Danceability: ${d.averageDanceability}`);
+        // })
+        // .on("mouseout", function(d) {
+        //     d3.select(this)
+        //     .attr("r", 5)
+        //     .style("fill", "#0077b6");
+    
+        // // Remove tooltip
+        // d3.select("#tooltip").remove();
+        // });
+	    
 // var makeScale = d3.scaleBand()
 //             .range([0, width])
 //             .domain(data_given.map(function (d) { return d.Make; }))
@@ -148,95 +219,12 @@ async function load1() {
     //         });
     // })
 
-var colorScale = d3.scale.category20()
-var xScale = d3.scaleLinear()
-    .domain([
-    	d3.min([0,d3.min(data,function (d) { return d.D_PTS })]),
-    	d3.max([0,d3.max(data,function (d) { return d.D_PTS })])
-    	])
-    .range([0,width])
-var yScale = d3.scaleLinear()
-    .domain([
-    	d3.min([0,d3.min(data,function (d) { return d.PTS })]),
-    	d3.max([0,d3.max(data,function (d) { return d.PTS })])
-    	])
-    .range([height,0])
-	// SVG
-	// var svg = body.append('svg')
-	//     .attr('height',h + margin.top + margin.bottom)
-	//     .attr('width',w + margin.left + margin.right)
-	//   .append('g')
-	//     .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
-	// X-axis
-// var xAxis = d3.svg.axis()
-// 	  .scale(xScale)
-// 	  .tickFormat(formatPercent)
-// 	  .ticks(5)
-// 	  .orient('bottom')
-// Y-axis
-	// var yAxis = d3.svg.axis()
-	//   .scale(yScale)
-	//   .tickFormat(formatPercent)
-	//   .ticks(5)
-	//   .orient('left')
-  // Circles
-  var circles = scene1.selectAll('circle')
-      .data(data_given)
-      .enter()
-    .append('circle')
-      .attr('cx',function (d) { return xScale(d.D_PTS) })
-      .attr('cy',function (d) { return yScale(d.PTS) })
-      .attr('r','10')
-      .attr('stroke','black')
-      .attr('stroke-width',1)
-      .attr('fill',function (d,i) { return colorScale(i) })
-      .on('mouseover', function () {
-        d3.select(this)
-          .transition()
-          .duration(500)
-          .attr('r',20)
-          .attr('stroke-width',3)
-      })
-      .on('mouseout', function () {
-        d3.select(this)
-          .transition()
-          .duration(500)
-          .attr('r',10)
-          .attr('stroke-width',1)
-      })
-    .append('title') // Tooltip
-      .text(function (d) { return d.Team +
-                           '\nReturn: ' + d.D_PTS +
-                           '\nStd. Dev.: ' + d.PTS })
-  // X-axis
-  // scene1.append('g')
-  //     .attr('class','axis')
-  //     .attr('transform', 'translate(0,' + height + ')')
-  //     .call(xAxis)
-  //   .append('text') // X-axis Label
-  //     .attr('class','label')
-  //     .attr('y',-10)
-  //     .attr('x',width)
-  //     .attr('dy','.71em')
-  //     .style('text-anchor','end')
-  //     .text('DEFENSE')
-  // Y-axis
-  // scene1.append('g')
-  //     .attr('class', 'axis')
-  //     .call(yAxis)
-  //   .append('text') // y-axis Label
-  //     .attr('class','label')
-  //     .attr('transform','rotate(-90)')
-  //     .attr('x',0)
-  //     .attr('y',5)
-  //     .attr('dy','.71em')
-  //     .style('text-anchor','end')
-  //     .text('OFFENSE')
-})
+
 
 
 	    
 }
+ }
 
 // This function is called by the buttons on top of the plot
 // function change(setting) {
