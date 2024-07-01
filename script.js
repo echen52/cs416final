@@ -98,7 +98,6 @@ scene1.append('text')
 var scatter_tooltip1 = d3.select("body")
     .append("div")
     .append("div")
-    .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
     .style("background-color", "black")
@@ -160,7 +159,6 @@ async function load1() {
                     .duration(200)
                     .style("opacity", .9);
                 scatter_tooltip.html(d.Team)
-                    .html(d.NET_RTG)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
