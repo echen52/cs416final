@@ -158,7 +158,7 @@ async function load1() {
                 scatter_tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                scatter_tooltip.html(d.Team)
+                scatter_tooltip.html(d.Team, d.NET_RTG)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
@@ -167,6 +167,28 @@ async function load1() {
                     .duration(500)
                     .style("opacity", 0);
             });
+
+        const annotations = [{
+        note: {
+            label: "Hover over each point to see team.",
+            title: "Note"
+        },
+        x: width / 2,
+        y: margin.top / 2,
+        dy: 0,
+        dx: 0
+    }];
+
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations);
+
+    scene1.append("g")
+        .attr("class", "annotation-group1")
+        .call(makeAnnotations);
+}
+
+
+
 
 
         // scene1.selectAll("mybar")
