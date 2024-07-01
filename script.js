@@ -146,14 +146,39 @@ async function load1() {
             .attr("class", "axis")
             .call(yAxis1)
 
+        scene1.selectAll("circle")
+            .data(data_given)
+            .enter().append("circle")
+            .attr("cx", d => scatterScaleX (d.D_PTS) )  // Align with center of band
+            .attr("cy", d => scatterScaleY(d.PTS))
+            .attr("r", 5)
+            .style("fill", "#0077b6")
+            .on("mouseover", function(event, d) {
+            d3.select(this)
+            .attr("r", 7)
+            .style("fill", "#ff5733");
 
-       // scene1.append("g")
-       //        .attr("transform", "translate(50,950)")
-       //          .attr("class", "axis")
-       //          .call(yAxis1)
-       //          .selectAll("text")
-       //          .attr("transform", "translate(-10,0)rotate(-30)")
-       //          .style("text-anchor", "end");
+        // Add tooltip
+        scene1.append("text")
+            .attr("id", "tooltip")
+            .attr("x", d => scatterScaleX (d.D_PTS))  // Center the tooltip text within the band
+            .attr("y", d => scatterScaleY(d.PTS))
+            .attr("text-anchor", "middle")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "11px")
+            .attr("font-weight", "bold")
+            .attr("fill", "black")
+            .text(`Net Rating: ${d.NET_RTG}`);
+        })
+        .on("mouseout", function(d) {
+            d3.select(this)
+            .attr("r", 5)
+            .style("fill", "#0077b6");
+
+        // Remove tooltip
+        d3.select("#tooltip").remove();
+        });
+
 
         // scene1.selectAll("mybar")
         //     .data(data_given)
