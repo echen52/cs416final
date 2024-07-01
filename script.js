@@ -101,7 +101,7 @@ var scatter_tooltip1 = d3.select("body")
     .style("opacity", 0)
     .attr("class", "tooltip")
     .style("background-color", "black")
-    .style("border-radius", "5px")
+    .style("border-radius", "15px")
     .style("padding", "15px")
     .style("color", "white")
 
@@ -152,7 +152,7 @@ async function load1() {
             .enter().append("circle")
             .attr("cx", d => scatterScaleX (d.D_PTS) )  // Align with center of band
             .attr("cy", d => scatterScaleY(d.PTS))
-            .attr("r", 5)
+            .attr("r", 8)
             .style("fill", "#0077b6")
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
