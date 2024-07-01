@@ -116,6 +116,8 @@ async function load1() {
         // var makeAxis = d3.axisBottom()
         //     .scale(makeScale)
         //     .ticks(5);
+
+
         var scatterScaleX = d3.scaleLinear()
             .range([0, width])
             .domain([104, 126]);
@@ -128,10 +130,10 @@ async function load1() {
         var xAxis1 = d3.axisBottom(scatterScaleX);
         var yAxis1 = d3.axisLeft(scatterScaleY);
 
-        scene1.append("g")
-            .attr("transform", "translate(50,20)")
-            .attr("class", "axis")
-            .call(yAxis1);
+        // scene1.append("g")
+        //     .attr("transform", "translate(50,20)")
+        //     .attr("class", "axis")
+        //     .call(yAxis1);
 
 
         scene1.append("g")
