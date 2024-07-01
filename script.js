@@ -95,7 +95,7 @@ scene1.append('text')
 //     "30", "19", "120", "14", "22", "22", "23", "17", "16", "26", "16", "85", "24", "121", "124", "21", "14", "12", "14", "32", "21", "92",
 //     "23", "21", "22"];
 
-var bar_tooltip = d3.select("body")
+var scatter_tooltip1 = d3.select("body")
     .append("div")
     .append("div")
     .style("opacity", 0)
@@ -104,6 +104,7 @@ var bar_tooltip = d3.select("body")
     .style("border-radius", "5px")
     .style("padding", "15px")
     .style("color", "white")
+
 
 async function load1() {
     d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
@@ -153,31 +154,19 @@ async function load1() {
             .attr("cy", d => scatterScaleY(d.PTS))
             .attr("r", 5)
             .style("fill", "#0077b6")
-            .on("mouseover", function(event, d) {
-            d3.select(this)
-            .attr("r", 7)
-            .style("fill", "#ff5733");
-
-        // Add tooltip
-        scene1.append("text")
-            .attr("id", "tooltip")
-            .attr("x", d => scatterScaleX (d.D_PTS))  // Center the tooltip text within the band
-            .attr("y", d => scatterScaleY(d.PTS))
-            .attr("text-anchor", "middle")
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "11px")
-            .attr("font-weight", "bold")
-            .attr("fill", "black")
-            .text(`Net Rating: ${d.NET_RTG}`);
-        })
-        .on("mouseout", function(d) {
-            d3.select(this)
-            .attr("r", 5)
-            .style("fill", "#0077b6");
-
-        // Remove tooltip
-        d3.select("#tooltip").remove();
-        });
+            .on("mouseover", function (d) {
+                scatter_tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                scatter_tooltip.html(d.Team)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function (d) {
+                scatter_tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
 
 
         // scene1.selectAll("mybar")
