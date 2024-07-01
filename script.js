@@ -1,6 +1,3 @@
-// --------------------------------------------------------------------------------// 
-// D3 Code for CS 498 Final Project - By Amrutha Gujjar
-// --------------------------------------------------------------------------------// 
 
 // --------------------------------------------------------------------------------// 
 // SETUP --------------------------------------------------------------------------//
@@ -111,17 +108,7 @@ var bar_tooltip = d3.select("body")
 
 async function load1() {
     d3.csv("Data/cars2017.csv").then(function (data_given) {
-        // var makes = [];
-        // var highway_mpgs = [];
-        // var city_mpgs = []
-        // for (var key of Object.values(data_given)) {
-        //     if (!makes.includes(key.Make)) {
-        //         makes.push(key.Make)
-        //         highway_mpgs.push(key.AverageHighwayMPG)
-        //         city_mpgs.push(key.AverageCityMPG)
-        //     }
-        // }
-        // console.log(city_mpgs)
+
 
         var makeScale = d3.scaleBand()
             .range([0, width])
