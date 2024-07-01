@@ -1,7 +1,7 @@
 
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 // SETUP --------------------------------------------------------------------------//
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 
 // Retrieve the scenes
 var scene1 = d3.select('#scene1')
@@ -79,9 +79,9 @@ scene3.append('text')
     .attr('text-anchor', 'middle')
     .text('Fuel Type')
 
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 // SCENE ONE ----------------------------------------------------------------------//
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 
 var makes = ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler",
     "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini",
@@ -107,84 +107,93 @@ var bar_tooltip = d3.select("body")
     .style("color", "white")
 
 async function load1() {
-    d3.csv("Data/cars2017.csv").then(function (data_given) {
-        // var makes = [];
-        // var highway_mpgs = [];
-        // var city_mpgs = []
-        // for (var key of Object.values(data_given)) {
-        //     if (!makes.includes(key.Make)) {
-        //         makes.push(key.Make)
-        //         highway_mpgs.push(key.AverageHighwayMPG)
-        //         city_mpgs.push(key.AverageCityMPG)
-        //     }
-        // }
-        // console.log(city_mpgs)
+    d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
 
-        var makeScale = d3.scaleBand()
+
+        // var makeScale = d3.scaleBand()
+        //     .range([0, width])
+        //     .domain(data_given.map(function (d) { return d.Make; }))
+        //
+        // var makeAxis = d3.axisBottom()
+        //     .scale(makeScale)
+        //     .ticks(5);
+        var scatterScaleX = d3.scaleLinear()
             .range([0, width])
-            .domain(data_given.map(function (d) { return d.Make; }))
+            .domain([d3.min(data_given, d => d.D_PTS),
+              d3.max(data_given, d => d.D_PTS)]);
 
-        var makeAxis = d3.axisBottom()
-            .scale(makeScale)
-            .ticks(5);
+
+        var scatterScaleY = d3.scaleLinear()
+            .range([height, 0])
+            .domain([d3.min(data_given, d => d.PTS),
+            d3.max(data_given, d => d.PTS)]);
+
+        var xAxis1 = d3.axisBottom(scatterScaleX);
+        var yAxis1 = d3.axisLeft(scatterScaleY);
+
 
         scene1.append("g")
             .attr("transform", "translate(50,950)")
             .attr("class", "axis")
-            .call(makeAxis)
+            .call(xAxis1)
             .selectAll("text")
             .attr("transform", "translate(-10,0)rotate(-30)")
             .style("text-anchor", "end");
 
-        scene1.selectAll("mybar")
-            .data(data_given)
-            .enter()
-            .append("rect")
-            .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
-            .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-            .attr("width", makeScale.bandwidth() - 10)
-            .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-            .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
-                bar_tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                bar_tooltip.html(makes[i])
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
-            })
-            .on("mouseout", function (d) {
-                bar_tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            });
+        scene1.append("g")
+             .call(yAxis1);
+
+        // scene1.selectAll("mybar")
+        //     .data(data_given)
+        //     .enter()
+        //     .append("rect")
+        //     .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
+        //     .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+        //     .attr("width", makeScale.bandwidth() - 10)
+        //     .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+        //     .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+        //         bar_tooltip.transition()
+        //             .duration(200)
+        //             .style("opacity", .9);
+        //         bar_tooltip.html(makes[i])
+        //             .style("left", (d3.event.pageX) + "px")
+        //             .style("top", (d3.event.pageY - 28) + "px");
+        //     })
+        //     .on("mouseout", function (d) {
+        //         bar_tooltip.transition()
+        //             .duration(500)
+        //             .style("opacity", 0);
+        //     });
+
+
     })
 }
 
 // This function is called by the buttons on top of the plot
-function change(setting) {
-    if (setting === "AverageHighwayMPG") {
-        scene1.selectAll("rect")
-            .transition()
-            .duration(2000)
-            .attr("fill", "#5E4FA2")
-            .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-            .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-    } else {
-        scene1.selectAll("rect")
-            .transition()
-            .duration(2000)
-            .attr("fill", "#66C2A5")
-            .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
-            .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
-    }
-}
+// function change(setting) {
+//     if (setting === "AverageHighwayMPG") {
+//         scene1.selectAll("rect")
+//             .transition()
+//             .duration(2000)
+//             .attr("fill", "#5E4FA2")
+//             .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+//             .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+//     } else {
+//         scene1.selectAll("rect")
+//             .transition()
+//             .duration(2000)
+//             .attr("fill", "#66C2A5")
+//             .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
+//             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
+//     }
+// }
 
 
 
-                                       
-// --------------------------------------------------------------------------------// 
+
+// --------------------------------------------------------------------------------//
 // SCENE TWO ----------------------------------------------------------------------//
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 
 var keys_cyls = ["2", "4", "6", "8", "10", "12"]
 var myColor = d3.scaleOrdinal()
@@ -284,9 +293,9 @@ async function load2() {
     })
 }
 
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 // SCENE THREE --------------------------------------------------------------------//
-// --------------------------------------------------------------------------------// 
+// --------------------------------------------------------------------------------//
 
 // Reference: https://www.d3-graph-gallery.com/graph/connectedscatter_select.html
 var keys_fuel = ["Diesel", "Gasoline", "Electricity"]
