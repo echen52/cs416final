@@ -178,13 +178,13 @@ var colorScale = d3.scale.category20()
     	d3.min([0,d3.min(data,function (d) { return d.D_PTS })]),
     	d3.max([0,d3.max(data,function (d) { return d.D_PTS })])
     	])
-    .range([0,w])
+    .range([0,width])
   var yScale = d3.scale.linear()
     .domain([
     	d3.min([0,d3.min(data,function (d) { return d.PTS })]),
     	d3.max([0,d3.max(data,function (d) { return d.PTS })])
     	])
-    .range([h,0])
+    .range([height,0])
 	// SVG
 	// var svg = body.append('svg')
 	//     .attr('height',h + margin.top + margin.bottom)
@@ -208,8 +208,8 @@ var colorScale = d3.scale.category20()
       .data(data_given)
       .enter()
     .append('circle')
-      .attr('cx',function (d) { return xScale(d.asd) })
-      .attr('cy',function (d) { return yScale(d.aror) })
+      .attr('cx',function (d) { return xScale(d.D_PTS) })
+      .attr('cy',function (d) { return yScale(d.PTS) })
       .attr('r','10')
       .attr('stroke','black')
       .attr('stroke-width',1)
@@ -229,18 +229,18 @@ var colorScale = d3.scale.category20()
           .attr('stroke-width',1)
       })
     .append('title') // Tooltip
-      .text(function (d) { return d.variable +
+      .text(function (d) { return d.Team +
                            '\nReturn: ' + d.D_PTS +
                            '\nStd. Dev.: ' + d.PTS })
   // X-axis
   scene1.append('g')
       .attr('class','axis')
-      .attr('transform', 'translate(0,' + h + ')')
+      .attr('transform', 'translate(0,' + height + ')')
       .call(xAxis)
     .append('text') // X-axis Label
       .attr('class','label')
       .attr('y',-10)
-      .attr('x',w)
+      .attr('x',width)
       .attr('dy','.71em')
       .style('text-anchor','end')
       .text('DEFENSE')
