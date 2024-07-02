@@ -158,7 +158,7 @@ async function load1() {
                     .attr("width", size)
                     .attr("height", size)
                     .attr("stroke", "black")
-                    .style("fill", function (d) { return scattercolorOrdinal(d) })
+                    .style("fill", function (d) { return scatterColorOrdinal(d) })
                     // .on("mouseover", function (d) { highlight(d) })
                     // .on("mouseleave", function (d) { noHighlight(d) })
 
