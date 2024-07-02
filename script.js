@@ -106,6 +106,10 @@ var scatter_tooltip1 = d3.select("body")
     .style("color", "white")
 
 
+
+
+
+
 async function load1() {
     d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
 
@@ -133,9 +137,43 @@ async function load1() {
 
         var scatterColor = d3.scaleLinear()
             .domain([-12,12])
-            .range(["#cd5c5c",
+            .range(["#cd5c5c", "#f8f8ff"
                 "#90ee90"]);
 
+        var keys_cyls1 = ["Good Net Rating", "Average Net Rating", "Good Net Rating"]
+        var scatterColorOrdinal = d3.scaleOrdinal()
+            .domain(keys_cyls1)
+            .range(["#cd5c5c", "#f8f8ff"
+                        "#90ee90"]);
+
+
+                // Legend
+        var size = 20
+        scene1.selectAll("legend")
+                    .data(keys_cyls1)
+                    .enter()
+                    .append("rect")
+                    .attr("x", 100)
+                    .attr("y", function (d, i) { return 200 + i * (size + 2) })
+                    .attr("width", size)
+                    .attr("height", size)
+                    .attr("stroke", "black")
+                    .style("fill", function (d) { return scattercolorOrdinal(d) })
+                    // .on("mouseover", function (d) { highlight(d) })
+                    // .on("mouseleave", function (d) { noHighlight(d) })
+
+        scene1.selectAll("labels")
+                    .data(keys_cyls1)
+                    .enter()
+                    .append("text")
+                    .attr("x", 100 + size * 1.2)
+                    .attr("y", function (d, i) { return 200 + i * (size + 2) + (size / 2) })
+                    .style("fill", function (d) { return "black" })
+                    .text(function (d) { return d })
+                    .attr("text-anchor", "left")
+                    .style("alignment-baseline", "middle")
+                    // .on("mouseover", highlight)
+                    // .on("mouseleave", noHighlight)
 
         scene1.append("g")
             .attr("transform", "translate(50,950)")
