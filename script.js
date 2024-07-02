@@ -326,7 +326,7 @@ scene2.append('text')
 
 scene2.append('text')
     .attr('x', 500)
-    .attr('y', 1050)
+    .attr('y', 1075)
     .attr('text-anchor', 'middle')
     .text('Teams')
 
@@ -369,9 +369,9 @@ async function load2() {
                      .enter()
                      .append("rect")
                      .attr("x", function (d, i) { return margin.left + teamScale(teams[i]); })
-                     .attr("y", function (d, i) { return yAxis2(parseFloat(o_3P[i])) + 10; })
+                     .attr("y", function (d, i) { return y2(o_3P[i]) + 10; })
                      .attr("width", teamScale.bandwidth() - 10)
-                     .attr("height", function (d, i) { return height - yAxis2(parseFloat(o_3P[i])); })
+                     .attr("height", function (d, i) { return height - y2(o_3P[i]); })
                      .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
                          bar_tooltip.transition()
                              .duration(200)
@@ -396,15 +396,15 @@ function change(setting) {
             .transition()
             .duration(2000)
             .attr("fill", "#5E4FA2")
-            .attr("y", function (d, i) { return yAxis2(parseFloat(o_3P[i])) + 10; })
-            .attr("height", function (d, i) { return height - yAxis2(parseFloat(o_3P[i])); })
+            .attr("y", function (d, i) { return y2(o_3P[i]) + 10; })
+            .attr("height", function (d, i) { return height - y2(o_3P[i]); })
     } else {
         scene2.selectAll("rect")
             .transition()
             .duration(2000)
             .attr("fill", "#66C2A5")
-            .attr("y", function (d, i) { return yAxis2(parseFloat(d_3P[i])) + 10; })
-            .attr("height", function (d, i) { return height - yAxis2(parseFloat(d_3P[i])); })
+            .attr("y", function (d, i) { return y2(d_3P[i]) + 10; })
+            .attr("height", function (d, i) { return height - y2(d_3P[i]); })
           }
 }
 
