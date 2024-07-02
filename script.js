@@ -315,10 +315,6 @@ scene2.append("g")
     .attr("class", "axis")
     .call(yAxis2);
 
-scene2.append("g")
-    .attr("transform", "translate(50,360)")
-    .attr("class", "axis")
-    .call(xAxis2);
 
 // axis labels
 scene2.append('text')
@@ -358,6 +354,14 @@ async function load2() {
       var teamAxis = d3.axisBottom()
           .scale(teamScale)
           .ticks(5);
+
+      scene1.append("g")
+                .attr("transform", "translate(50,950)")
+                .attr("class", "axis")
+                .call(teamAxis)
+                .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-30)")
+                .style("text-anchor", "end");
 
 
     scene2.selectAll("mybar")
