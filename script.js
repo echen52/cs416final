@@ -355,7 +355,7 @@ async function load2() {
           .scale(teamScale)
           .ticks(5);
 
-      scene1.append("g")
+      scene2.append("g")
                 .attr("transform", "translate(50,950)")
                 .attr("class", "axis")
                 .call(teamAxis)
