@@ -91,9 +91,6 @@ async function load1() {
     d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
 
 
-
-
-
         var scatterScaleX = d3.scaleLinear()
             .range([0, width])
             .domain([-10, 10])
@@ -196,6 +193,101 @@ async function load1() {
 // SCENE TWO ----------------------------------------------------------------------//
 // --------------------------------------------------------------------------------//
 
+var teams = ["Atlanta Hawks",
+"Boston Celtics",
+"Brooklyn Nets",
+"Charlotte Hornets",
+"Chicago Bulls",
+"Cleveland Cavaliers",
+"Dallas Mavericks",
+"Denver Nuggets",
+"Detroit Pistons",
+"Golden State Warriors",
+"Houston Rockets",
+"Indiana Pacers",
+"Los Angeles Clippers",
+"Los Angeles Lakers",
+"Memphis Grizzlies",
+"Miami Heat",
+"Milwaukee Bucks",
+"Minnesota Timberwolves",
+"New Orleans Pelicans",
+"New York Knicks",
+"Oklahoma City Thunder",
+"Orlando Magic",
+"Philadelphia 76ers",
+"Phoenix Suns",
+"Portland Trail Blazers",
+"Sacramento Kings",
+"San Antonio Spurs",
+"Toronto Raptors",
+"Utah Jazz",
+"Washington Wizards"];
+
+var o_3P = ["13.6",
+"16.8",
+"13.6",
+"12.4",
+"11.7",
+"13.8",
+"14.6",
+"12",
+"11",
+"14.8",
+"12.7",
+"13",
+"13",
+"11.6",
+"13.2",
+"12.9",
+"14.1",
+"12.9",
+"12.7",
+"13.8",
+"13.2",
+"11.3",
+"12.3",
+"12.6",
+"11.7",
+"14.4",
+"12.4",
+"11.5",
+"12.9",
+"12"]
+
+
+var d_3P = ["13.2",
+"13.3",
+"14",
+"14.9",
+"12.8",
+"13.1",
+"11.6",
+"12.1",
+"13.3",
+"12.4",
+"10.5",
+"13.2",
+"14",
+"13.6",
+"13.4",
+"12.5",
+"11.7",
+"13.8",
+"13.1",
+"13.4",
+"11.8",
+"12.2",
+"13.3",
+"11.9",
+"13.1",
+"12.4",
+"13.7",
+"14.8",
+"11.9",
+"12"];
+
+
 scene2.append("g")
     .attr("transform", "translate(50,20)")
     .attr("class", "axis")
@@ -233,107 +325,10 @@ var bar_tooltip = d3.select("body")
 
     
 
-
-var teams = ['Atlanta Hawks',
-'Boston Celtics',
-'Brooklyn Nets',
-'Charlotte Hornets',
-'Chicago Bulls',
-'Cleveland Cavaliers',
-'Dallas Mavericks',
-'Denver Nuggets',
-'Detroit Pistons',
-'Golden State Warriors',
-'Houston Rockets',
-'Indiana Pacers',
-'Los Angeles Clippers',
-'Los Angeles Lakers',
-'Memphis Grizzlies',
-'Miami Heat',
-'Milwaukee Bucks',
-'Minnesota Timberwolves',
-'New Orleans Pelicans',
-'New York Knicks',
-'Oklahoma City Thunder',
-'Orlando Magic',
-'Philadelphia 76ers',
-'Phoenix Suns',
-'Portland Trail Blazers',
-'Sacramento Kings',
-'San Antonio Spurs',
-'Toronto Raptors',
-'Utah Jazz',
-'Washington Wizards'];
-
-var o_3P = ['13.6',
-'16.8',
-'13.6',
-'12.4',
-'11.7',
-'13.8',
-'14.6',
-'12',
-'11',
-'14.8',
-'12.7',
-'13',
-'13',
-'11.6',
-'13.2',
-'12.9',
-'14.1',
-'12.9',
-'12.7',
-'13.8',
-'13.2',
-'11.3',
-'12.3',
-'12.6',
-'11.7',
-'14.4',
-'12.4',
-'11.5',
-'12.9',
-'12']
-
-
-var d_3P = ['13.2',
-'13.3',
-'14',
-'14.9',
-'12.8',
-'13.1',
-'11.6',
-'12.1',
-'13.3',
-'12.4',
-'10.5',
-'13.2',
-'14',
-'13.6',
-'13.4',
-'12.5',
-'11.7',
-'13.8',
-'13.1',
-'13.4',
-'11.8',
-'12.2',
-'13.3',
-'11.9',
-'13.1',
-'12.4',
-'13.7',
-'14.8',
-'11.9',
-'12'];
-
-
-
-
-
 async function load2() {
     d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
+
+      
       var teamScale = d3.scaleBand()
           .range([0, width])
           .domain(data_given.map(function (d) { return d.Team; }))
@@ -364,10 +359,11 @@ async function load2() {
                              .duration(500)
                              .style("opacity", 0);
                      });
-
-
-
+                   })
 }
+
+
+
 // This function is called by the buttons on top of the plot
 function change(setting) {
     if (setting === "O_3P") {
@@ -384,7 +380,7 @@ function change(setting) {
             .attr("fill", "#66C2A5")
             .attr("y", function (d, i) { return y(d_3P[i]) + 10; })
             .attr("height", function (d, i) { return height - y(d_3P[i]); })
-    }
+          }
 }
 
 // --------------------------------------------------------------------------------//
