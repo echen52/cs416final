@@ -121,12 +121,12 @@ async function load1() {
 
         var scatterScaleX = d3.scaleLinear()
             .range([0, width])
-            .domain([104, 126])
+            .domain([-10, 10])
 
 
         var scatterScaleY = d3.scaleLinear()
             .range([height, 0])
-            .domain([104, 126])
+            .domain([-10, 10])
 
         var xAxis1 = d3.axisBottom(scatterScaleX)
         var yAxis1 = d3.axisLeft(scatterScaleY)
@@ -150,9 +150,9 @@ async function load1() {
         scene1.selectAll("circle")
             .data(data_given)
             .enter().append("circle")
-            .attr("cx", d => scatterScaleX (d.D_PTS) )  // Align with center of band
-            .attr("cy", d => scatterScaleY(d.PTS))
-            .attr("r", 8)
+            .attr("cx", d => scatterScaleX (d.D_REL) )  // Align with center of band
+            .attr("cy", d => scatterScaleY(d.O_REL))
+            .attr("r", 10)
             .style("fill", "#0077b6")
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
