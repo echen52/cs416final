@@ -131,10 +131,10 @@ async function load1() {
         var xAxis1 = d3.axisBottom(scatterScaleX)
         var yAxis1 = d3.axisLeft(scatterScaleY)
 
-        var scatterColor = d3.scaleOrdinal()
+        var scatterColor = d3.scaleLinear()
             .domain([-12,12])
-            .range(["#FF0000",
-                "#008000"]);
+            .range(["#cd5c5c",
+                "#90ee90"]);
 
 
         scene1.append("g")
