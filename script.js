@@ -193,6 +193,28 @@ async function load1() {
 // SCENE TWO ----------------------------------------------------------------------//
 // --------------------------------------------------------------------------------//
 
+// axis definition
+var x2 = d3.scaleBand()
+    .domain([0, 30])
+    .range([0, width]);
+
+
+
+var y2 = d3.scaleLinear()
+    .domain([0, 20])
+    .range([height, 0]);
+
+var xAxis2 = d3.axisBottom()
+    .scale(x2)
+    .ticks(0);
+
+var yAxis2 = d3.axisLeft()
+    .scale(y2)
+    .ticks(10);
+
+
+
+
 var teams = ["Atlanta Hawks",
 "Boston Celtics",
 "Brooklyn Nets",
@@ -291,12 +313,12 @@ var d_3P = ["13.2",
 scene2.append("g")
     .attr("transform", "translate(50,20)")
     .attr("class", "axis")
-    .call(yAxis);
+    .call(yAxis2);
 
 scene2.append("g")
     .attr("transform", "translate(50,360)")
     .attr("class", "axis")
-    .call(xAxis);
+    .call(xAxis2);
 
 // axis labels
 scene2.append('text')
@@ -304,13 +326,13 @@ scene2.append('text')
     .attr('y', 15)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
-    .text('Mileage')
+    .text('3 Pointers')
 
 scene2.append('text')
     .attr('x', 500)
     .attr('y', 1050)
     .attr('text-anchor', 'middle')
-    .text('Cars')
+    .text('Teams')
 
 
 var bar_tooltip = d3.select("body")
@@ -323,16 +345,16 @@ var bar_tooltip = d3.select("body")
         .style("padding", "15px")
         .style("color", "white")
 
-    
+
 
 async function load2() {
     d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
 
-      
+
       var teamScale = d3.scaleBand()
           .range([0, width])
           .domain(data_given.map(function (d) { return d.Team; }))
-      
+
       var teamAxis = d3.axisBottom()
           .scale(teamScale)
           .ticks(5);
@@ -402,6 +424,8 @@ var scatter_tooltip = d3.select("body")
     .style("border-radius", "5px")
     .style("padding", "15px")
     .style("color", "white")
+
+var keys_cyls = ["2", "4", "6", "8", "10", "12"]
 
 async function load3() {
     d3.csv("Data/cars2017.csv").then(function (data) {
