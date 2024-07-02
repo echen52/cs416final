@@ -38,19 +38,7 @@ var yAxis = d3.axisLeft()
 // axis appends
 
 
-scene2.append("g")
-    .attr("transform", "translate(50,360)")
-    .attr("class", "axis")
-    .call(xAxis)
 
-// axis labels
-
-
-scene2.append('text')
-    .attr('x', 500)
-    .attr('y', 390)
-    .attr('text-anchor', 'middle')
-    .text('Average Highway MPG')
 
 scene3.append('text')
     .attr('x', -500)
@@ -82,18 +70,7 @@ scene1.append('text')
     .attr('text-anchor', 'middle')
     .text('Defensive Rating')
 
-// var makes = ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Buick", "Cadillac", "Chevrolet", "Chrysler",
-//     "Dodge", "Ferrari", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia", "Lamborghini",
-//     "Land Rover", "Lexus", "Lincoln", "Lotus", "Maserati", "Mazda", "McLaren Automotive", "Mercedes-Benz", "MINI", "Mitsubishi",
-//     "Nissan", "Porsche", "Ram", "Rolls-Royce", "Roush Performance", "smart", "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo"];
-//
-// var highway_mpgs = ["35", "33", "19", "30", "22", "41", "27", "30", "29", "25", "24", "22", "103", "96", "24", "29", "38", "122",
-//     "30", "39", "27", "92", "21", "28", "30", "29", "24", "24", "34", "23", "82", "33", "102", "101", "27", "21", "19", "23", "39", "27",
-//     "98", "30", "28", "29"];
-//
-// var city_mpgs = ["25", "24", "12", "23", "13", "30", "20", "22", "21", "16", "15", "16", "121", "118", "17", "21", "30", "150", "22",
-//     "30", "19", "120", "14", "22", "22", "23", "17", "16", "26", "16", "85", "24", "121", "124", "21", "14", "12", "14", "32", "21", "92",
-//     "23", "21", "22"];
+
 
 var scatter_tooltip1 = d3.select("body")
     .append("div")
@@ -114,13 +91,7 @@ async function load1() {
     d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
 
 
-        // var makeScale = d3.scaleBand()
-        //     .range([0, width])
-        //     .domain(data_given.map(function (d) { return d.Make; }))
-        //
-        // var makeAxis = d3.axisBottom()
-        //     .scale(makeScale)
-        //     .ticks(5);
+
 
 
         var scatterScaleX = d3.scaleLinear()
@@ -210,50 +181,13 @@ async function load1() {
 
 
 
-        // scene1.selectAll("mybar")
-        //     .data(data_given)
-        //     .enter()
-        //     .append("rect")
-        //     .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
-        //     .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-        //     .attr("width", makeScale.bandwidth() - 10)
-        //     .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-        //     .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
-        //         bar_tooltip.transition()
-        //             .duration(200)
-        //             .style("opacity", .9);
-        //         bar_tooltip.html(makes[i])
-        //             .style("left", (d3.event.pageX) + "px")
-        //             .style("top", (d3.event.pageY - 28) + "px");
-        //     })
-        //     .on("mouseout", function (d) {
-        //         bar_tooltip.transition()
-        //             .duration(500)
-        //             .style("opacity", 0);
-        //     });
+
 
 
     })
 }
 
-// This function is called by the buttons on top of the plot
-// function change(setting) {
-//     if (setting === "AverageHighwayMPG") {
-//         scene1.selectAll("rect")
-//             .transition()
-//             .duration(2000)
-//             .attr("fill", "#5E4FA2")
-//             .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-//             .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-//     } else {
-//         scene1.selectAll("rect")
-//             .transition()
-//             .duration(2000)
-//             .attr("fill", "#66C2A5")
-//             .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
-//             .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
-//     }
-// }
+
 
 
 
@@ -262,102 +196,195 @@ async function load1() {
 // SCENE TWO ----------------------------------------------------------------------//
 // --------------------------------------------------------------------------------//
 
-var keys_cyls = ["2", "4", "6", "8", "10", "12"]
-var myColor = d3.scaleOrdinal()
-    .domain(keys_cyls)
-    .range(["#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598",
-        "#FFFFBF"]);
+scene2.append("g")
+    .attr("transform", "translate(50,20)")
+    .attr("class", "axis")
+    .call(yAxis);
 
-var tooltip = d3.select("body").append("div")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "black")
-    .style("border-radius", "5px")
-    .style("padding", "15px")
-    .style("color", "white")
+scene2.append("g")
+    .attr("transform", "translate(50,360)")
+    .attr("class", "axis")
+    .call(xAxis);
 
-// Legend
-var size = 20
-scene2.selectAll("legend")
-    .data(keys_cyls)
-    .enter()
-    .append("rect")
-    .attr("x", 100)
-    .attr("y", function (d, i) { return 200 + i * (size + 5) })
-    .attr("width", size)
-    .attr("height", size)
-    .attr("stroke", "black")
-    .style("fill", function (d) { return myColor(d) })
-    .on("mouseover", function (d) { highlight(d) })
-    .on("mouseleave", function (d) { noHighlight(d) })
-
-scene2.selectAll("labels")
-    .data(keys_cyls)
-    .enter()
-    .append("text")
-    .attr("x", 100 + size * 1.2)
-    .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 2) })
-    .style("fill", function (d) { return "black" })
-    .text(function (d) { return d })
-    .attr("text-anchor", "left")
-    .style("alignment-baseline", "middle")
-    .on("mouseover", highlight)
-    .on("mouseleave", noHighlight)
-
-// Annotation
-scene2.append('rect')
-    .attr("x", 300)
-    .attr("y", 200)
-    .attr("width", 500)
-    .attr("height", 30)
-    .style("fill", 'lightgray')
+// axis labels
+scene2.append('text')
+    .attr('x', -500)
+    .attr('y', 15)
+    .attr('transform', 'rotate(-90)')
+    .attr('text-anchor', 'middle')
+    .text('Mileage')
 
 scene2.append('text')
-    .attr("x", 310)
-    .attr("y", 220)
-    .attr("width", 60)
-    .attr("height", 20)
-    .style("fill", 'black')
-    .text("Fewer engineer cylinders are largely correlated with better mileage.")
-    .attr("text-anchor", "left")
-    .style("alignment-baseline", "middle")
+    .attr('x', 500)
+    .attr('y', 1050)
+    .attr('text-anchor', 'middle')
+    .text('Cars')
 
-var highlight = function (d) {
-    scene2.selectAll(".datapt").style("opacity", .05)
-    scene2.selectAll(".a" + d).style("opacity", 1)
-}
 
-var noHighlight = function (d) {
-    d3.selectAll(".datapt").style("opacity", 1)
-}
+var bar_tooltip = d3.select("body")
+        .append("div")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "black")
+        .style("border-radius", "5px")
+        .style("padding", "15px")
+        .style("color", "white")
+
+    
+
+
+var teams = ['Atlanta Hawks',
+'Boston Celtics',
+'Brooklyn Nets',
+'Charlotte Hornets',
+'Chicago Bulls',
+'Cleveland Cavaliers',
+'Dallas Mavericks',
+'Denver Nuggets',
+'Detroit Pistons',
+'Golden State Warriors',
+'Houston Rockets',
+'Indiana Pacers',
+'Los Angeles Clippers',
+'Los Angeles Lakers',
+'Memphis Grizzlies',
+'Miami Heat',
+'Milwaukee Bucks',
+'Minnesota Timberwolves',
+'New Orleans Pelicans',
+'New York Knicks',
+'Oklahoma City Thunder',
+'Orlando Magic',
+'Philadelphia 76ers',
+'Phoenix Suns',
+'Portland Trail Blazers',
+'Sacramento Kings',
+'San Antonio Spurs',
+'Toronto Raptors',
+'Utah Jazz',
+'Washington Wizards'];
+
+var o_3P = ['13.6',
+'16.8',
+'13.6',
+'12.4',
+'11.7',
+'13.8',
+'14.6',
+'12',
+'11',
+'14.8',
+'12.7',
+'13',
+'13',
+'11.6',
+'13.2',
+'12.9',
+'14.1',
+'12.9',
+'12.7',
+'13.8',
+'13.2',
+'11.3',
+'12.3',
+'12.6',
+'11.7',
+'14.4',
+'12.4',
+'11.5',
+'12.9',
+'12']
+
+
+var d_3P = ['13.2',
+'13.3',
+'14',
+'14.9',
+'12.8',
+'13.1',
+'11.6',
+'12.1',
+'13.3',
+'12.4',
+'10.5',
+'13.2',
+'14',
+'13.6',
+'13.4',
+'12.5',
+'11.7',
+'13.8',
+'13.1',
+'13.4',
+'11.8',
+'12.2',
+'13.3',
+'11.9',
+'13.1',
+'12.4',
+'13.7',
+'14.8',
+'11.9',
+'12'];
+
+
+
+
 
 async function load2() {
-    d3.csv("Data/cars2017.csv").then(function (d) {
-        scene2.selectAll("p")
-            .append("g")
-            .data(d)
-            .enter()
-            .append("circle")
-            .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
-            .attr("cx", function (d) { return d.AverageHighwayMPG * 20 })
-            .attr("cy", function (d) { return 300 })
-            .attr("r", "7")
-            .attr("fill", function (d) { return myColor(d.EngineCylinders); })
-            .on("mouseover", function (d) {
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html(d.Make)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
-            })
-            .on("mouseout", function (d) {
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            });
-    })
+    d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
+      var teamScale = d3.scaleBand()
+          .range([0, width])
+          .domain(data_given.map(function (d) { return d.Team; }))
+      
+      var teamAxis = d3.axisBottom()
+          .scale(teamScale)
+          .ticks(5);
+
+
+    scene2.selectAll("mybar")
+                     .data(data_given)
+                     .enter()
+                     .append("rect")
+                     .attr("x", function (d, i) { return margin.left + teamScale(teams[i]); })
+                     .attr("y", function (d, i) { return y(o_3P[i]) + 10; })
+                     .attr("width", teamScale.bandwidth() - 10)
+                     .attr("height", function (d, i) { return height - y(o_3P[i]); })
+                     .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+                         bar_tooltip.transition()
+                             .duration(200)
+                             .style("opacity", .9);
+                         bar_tooltip.html(teams[i])
+                             .style("left", (d3.event.pageX) + "px")
+                             .style("top", (d3.event.pageY - 28) + "px");
+                     })
+                     .on("mouseout", function (d) {
+                         bar_tooltip.transition()
+                             .duration(500)
+                             .style("opacity", 0);
+                     });
+
+
+
+}
+// This function is called by the buttons on top of the plot
+function change(setting) {
+    if (setting === "O_3P") {
+        scene2.selectAll("rect")
+            .transition()
+            .duration(2000)
+            .attr("fill", "#5E4FA2")
+            .attr("y", function (d, i) { return y(o_3P[i]) + 10; })
+            .attr("height", function (d, i) { return height - y(o_3P[i]); })
+    } else {
+        scene2.selectAll("rect")
+            .transition()
+            .duration(2000)
+            .attr("fill", "#66C2A5")
+            .attr("y", function (d, i) { return y(d_3P[i]) + 10; })
+            .attr("height", function (d, i) { return height - y(d_3P[i]); })
+    }
 }
 
 // --------------------------------------------------------------------------------//
