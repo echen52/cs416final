@@ -201,7 +201,7 @@ var x2 = d3.scaleBand()
 
 
 var y2 = d3.scaleLinear()
-    .domain([0, 20])
+    .domain([10, 20])
     .range([height, 0]);
 
 var xAxis2 = d3.axisBottom()
