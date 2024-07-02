@@ -311,7 +311,7 @@ var d_3P = ["13.2",
 
 
 scene2.append("g")
-    .attr("transform", "translate(50,20)")
+    .attr("transform", "translate(75,20)")
     .attr("class", "axis")
     .call(yAxis2);
 
@@ -369,9 +369,9 @@ async function load2() {
                      .enter()
                      .append("rect")
                      .attr("x", function (d, i) { return margin.left + teamScale(teams[i]); })
-                     .attr("y", function (d, i) { return y(o_3P[i]) + 10; })
+                     .attr("y", function (d, i) { return yAxis2(o_3P[i]) + 10; })
                      .attr("width", teamScale.bandwidth() - 10)
-                     .attr("height", function (d, i) { return height - y(o_3P[i]); })
+                     .attr("height", function (d, i) { return height - yAxis2(o_3P[i]); })
                      .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
                          bar_tooltip.transition()
                              .duration(200)
@@ -389,7 +389,6 @@ async function load2() {
 }
 
 
-
 // This function is called by the buttons on top of the plot
 function change(setting) {
     if (setting === "O_3P") {
@@ -397,15 +396,15 @@ function change(setting) {
             .transition()
             .duration(2000)
             .attr("fill", "#5E4FA2")
-            .attr("y", function (d, i) { return y(o_3P[i]) + 10; })
-            .attr("height", function (d, i) { return height - y(o_3P[i]); })
+            .attr("y", function (d, i) { return yAxis2(o_3P[i]) + 10; })
+            .attr("height", function (d, i) { return height - yAxis2(o_3P[i]); })
     } else {
         scene2.selectAll("rect")
             .transition()
             .duration(2000)
             .attr("fill", "#66C2A5")
             .attr("y", function (d, i) { return y(d_3P[i]) + 10; })
-            .attr("height", function (d, i) { return height - y(d_3P[i]); })
+            .attr("height", function (d, i) { return height - yAxis2(d_3P[i]); })
           }
 }
 
