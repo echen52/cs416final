@@ -35,11 +35,8 @@
     <a href="#two" class="back">Next</a>
     <h2 id="one">How do NBA Teams Compare on Offense and Defense?</h2>
     <p>See how each NBA team performs on offense and defense. Hover over each point to see the team. </p>
-<!--     <div>
-        <button id="highway" onclick="change('AverageHighwayMPG')">Average Highway MPG</button>
-        <button id="city" onclick="change('AverageCityMPG')">Average City MPG</button>
-    </div> -->
-    
+
+
     <svg id="scene1" width=1050 height=1100>
         <text x="825" y="490">League Average Offense</text>
         <line x1="60" y1="490" x2="800" y2="490" stroke="black" stroke-dasharray="4" />
@@ -52,17 +49,25 @@
     <a href="#one" class="back">Previous</a>
     <a href="#three" class="back">Next</a>
 
-    <h2 id="two">Do Engine Cylinders Affect Mileage?</h2>
-    <p>Hover over each engine cylinder category in the legend to better understand the trend. Additionally, hovering over each
-        data point itself will indicate which make of the car you are hovering over via an interactive tooltip.
+    <h2 id="two">NBA Teams 3 Pointers Per Game</h2>
+    <p>See how 3 pointers each NBA team makes and allows per game. Click on the button to switch between offense and defense.
     </p>
-    <svg id="scene2" width=1050 height=400></svg>
+
+    <div>
+            <button id="offense" onclick="change('O_3P')">Average 3 Pointers Made</button>
+            <button id="defense" onclick="change('D_3P')">Average 3 Pointers Allowed</button>
+    </div>
+
+
+
+
+    <svg id="scene2" width=1050 height=1100></svg>
     <hr>
 
     <a href="#intro" class="back">Back to Top</a>
     <a href="#two" class="back">Previous</a>
     <h2 id="three">What is the relationship between fuel type, number of engine cylinders and the mileage?</h2>
-    <p>This visualization shows us the relationship between all three fields: fuel type, engine cylinder, and average MPG. The size of the 
+    <p>This visualization shows us the relationship between all three fields: fuel type, engine cylinder, and average MPG. The size of the
         plotted point indicates the mileage, while the density represents the relative value of the cars that fall into that configuration of fuel type and
         cylinder number.
         </p>
@@ -73,7 +78,7 @@
 
 <!--     <hr>
     <a href="#intro" class="back">Back to Top</a>
-    
+
     <hr> -->
 
     <p>
