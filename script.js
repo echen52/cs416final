@@ -139,20 +139,20 @@ async function load1() {
             .domain([-12,12])
             .range(["#cd5c5c","#90ee90"]);
 
-        var keys_cyls1 = ["Poor Net Rating",  "Good Net Rating"]
+        var ratings = ["Poor Net Rating",  "Good Net Rating"]
         var scatterColorOrdinal = d3.scaleOrdinal()
-            .domain(keys_cyls1)
+            .domain(ratings)
             .range(["#cd5c5c","#90ee90"]);
 
 
-                // Legend
-        var size = 20
+        // Legend
+        var size = 30
         scene1.selectAll("legend")
-                    .data(keys_cyls1)
+                    .data(ratings)
                     .enter()
                     .append("rect")
                     .attr("x", 800)
-                    .attr("y", function (d, i) { return 200 + i * (size + 2) })
+                    .attr("y", function (d, i) { return 200 + i * (size + 5) })
                     .attr("width", size)
                     .attr("height", size)
                     .attr("stroke", "black")
@@ -161,11 +161,11 @@ async function load1() {
                     // .on("mouseleave", function (d) { noHighlight(d) })
 
         scene1.selectAll("labels")
-                    .data(keys_cyls1)
+                    .data(ratings)
                     .enter()
                     .append("text")
                     .attr("x", 800 + size * 1.2)
-                    .attr("y", function (d, i) { return 200 + i * (size + 2) + (size / 2) })
+                    .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 5) })
                     .style("fill", function (d) { return "black" })
                     .text(function (d) { return d })
                     .attr("text-anchor", "left")
