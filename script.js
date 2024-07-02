@@ -165,7 +165,7 @@ async function load1() {
                     .enter()
                     .append("text")
                     .attr("x", 800 + size * 1.2)
-                    .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 5) })
+                    .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 2) })
                     .style("fill", function (d) { return "black" })
                     .text(function (d) { return d })
                     .attr("text-anchor", "left")
