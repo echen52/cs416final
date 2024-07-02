@@ -137,14 +137,12 @@ async function load1() {
 
         var scatterColor = d3.scaleLinear()
             .domain([-12,12])
-            .range(["#cd5c5c", "#f8f8ff"
-                "#90ee90"]);
+            .range(["#cd5c5c","#90ee90"]);
 
-        var keys_cyls1 = ["Good Net Rating", "Average Net Rating", "Good Net Rating"]
+        var keys_cyls1 = ["Poor Net Rating",  "Good Net Rating"]
         var scatterColorOrdinal = d3.scaleOrdinal()
             .domain(keys_cyls1)
-            .range(["#cd5c5c", "#f8f8ff"
-                        "#90ee90"]);
+            .range(["#cd5c5c","#90ee90"]);
 
 
                 // Legend
@@ -153,7 +151,7 @@ async function load1() {
                     .data(keys_cyls1)
                     .enter()
                     .append("rect")
-                    .attr("x", 100)
+                    .attr("x", 800)
                     .attr("y", function (d, i) { return 200 + i * (size + 2) })
                     .attr("width", size)
                     .attr("height", size)
@@ -166,7 +164,7 @@ async function load1() {
                     .data(keys_cyls1)
                     .enter()
                     .append("text")
-                    .attr("x", 100 + size * 1.2)
+                    .attr("x", 800 + size * 1.2)
                     .attr("y", function (d, i) { return 200 + i * (size + 2) + (size / 2) })
                     .style("fill", function (d) { return "black" })
                     .text(function (d) { return d })
