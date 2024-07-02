@@ -131,7 +131,10 @@ async function load1() {
         var xAxis1 = d3.axisBottom(scatterScaleX)
         var yAxis1 = d3.axisLeft(scatterScaleY)
 
-
+        var scatterColor = d3.scaleOrdinal()
+            .domain([-12,12])
+            .range(["#FF0000",
+                "#008000"]);
 
 
         scene1.append("g")
@@ -153,7 +156,7 @@ async function load1() {
             .attr("cx", d => scatterScaleX (d.D_REL) )  // Align with center of band
             .attr("cy", d => scatterScaleY(d.O_REL))
             .attr("r", 10)
-            .style("fill", "#0077b6")
+            .style("fill", d => scatterColor (d.NET_RTG))
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
                     .duration(200)
