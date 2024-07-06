@@ -506,11 +506,12 @@ async function load3() {
 
 
         scene3.append('g')
-            .selectAll("circle")
+            .selectAll("dots")
             .data(data)
             .enter()
             .append("circle")
             .attr("cx", function (d) {return scatterScaleX(d.D_REL); })
+
             .attr("cy", function (d) {return scatterScaleY(d.O_REL); })
 
             .attr("r", function (d) { return (d.O_3P); })
