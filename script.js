@@ -450,8 +450,8 @@ async function load3() {
                   .domain([10, 18])
 
         var opacityScale = d3.scaleLinear()
-                  .range([0, 1])
-                  .domain([10, 18])
+                  .range([1, 0])
+                  .domain([10, 15])
 
 
         // var fuelScale = d3.scaleBand()
@@ -523,7 +523,7 @@ async function load3() {
 
             .attr("r", function (d) { return radiusScale(d.O_3P); })
             .style("fill", function (d) { return "#5E4FA2"; })
-            .style("opacity", function(d) {return 1 -opacityScale(d.D_3P);})
+            .style("opacity", function(d) {return opacityScale(d.D_3P);})
             .attr("stroke", "black")
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
