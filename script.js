@@ -372,7 +372,7 @@ async function load2() {
                      .attr("y", function (d, i) { return y2(o_3P[i]) + 10; })
                      .attr("width", teamScale.bandwidth() - 10)
                      .attr("height", function (d, i) { return height - y2(o_3P[i]); })
-                     .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+                     .attr("fill", "#90ee90").on("mouseover", function (d, i) {
                          bar_tooltip.transition()
                              .duration(200)
                              .style("opacity", .9);
@@ -395,14 +395,14 @@ function change(setting) {
         scene2.selectAll("rect")
             .transition()
             .duration(2000)
-            .attr("fill", "#5E4FA2")
+            .attr("fill", "#90ee90")
             .attr("y", function (d, i) { return y2(o_3P[i]) + 10; })
             .attr("height", function (d, i) { return height - y2(o_3P[i]); })
     } else {
         scene2.selectAll("rect")
             .transition()
             .duration(2000)
-            .attr("fill", "#66C2A5")
+            .attr("fill", "#cd5c5c")
             .attr("y", function (d, i) { return y2(d_3P[i]) + 10; })
             .attr("height", function (d, i) { return height - y2(d_3P[i]); })
           }
@@ -522,7 +522,7 @@ async function load3() {
             .attr("cy", function (d) {return scatterScaleY(d.O_REL); })
 
             .attr("r", function (d) { return radiusScale(d.O_3P); })
-            .style("fill", function (d) { return "#5E4FA2"; })
+            .style("fill", function (d) { return "#98FB98"; })
             .style("opacity", function(d) {return opacityScale(d.D_3P);})
             .attr("stroke", "black")
             .on("mouseover", function (d) {
