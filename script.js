@@ -445,6 +445,13 @@ async function load3() {
         var xAxis3 = d3.axisBottom(scatterScaleX)
         var yAxis3 = d3.axisLeft(scatterScaleY)
 
+        var radiusScale = d3.scaleLinear()
+                  .range([10, 50])
+                  .domain([10, 18])
+
+        var opacityScale = d3.scaleLinear()
+                  .range([0, 1])
+                  .domain([10, 18])
 
 
         // var fuelScale = d3.scaleBand()
@@ -514,9 +521,9 @@ async function load3() {
 
             .attr("cy", function (d) {return scatterScaleY(d.O_REL); })
 
-            .attr("r", function (d) { return (d.O_3P); })
+            .attr("r", function (d) { return radiusScale(d.O_3P); })
             .style("fill", function (d) { return "#5E4FA2"; })
-            .style("opacity", "0.1")
+            .style("opacity", function(d) {return 1 -opacityScale(d.D_3P);})
             .attr("stroke", "black")
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
