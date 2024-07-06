@@ -510,9 +510,9 @@ async function load3() {
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", d => scatterScaleX (d.D_REL) })
+            .attr("cx", function (d) {return scatterScaleX(d.D_REL); })
             // .attr("cy", function (d) { return 1050 - cylScale(12-d.EngineCylinders); })
-            .attr("cy", d => scatterScaleX (d.O_REL))
+            .attr("cy", function (d) {return scatterScaleY(d.O_REL); })
 
             .attr("r", function (d) { return d.O_3P; })
             .style("fill", function (d) { return "#5E4FA2"; })
