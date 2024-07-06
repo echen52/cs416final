@@ -105,12 +105,12 @@ async function load1() {
 
         var scatterColor = d3.scaleLinear()
             .domain([-12,12])
-            .range(["#cd5c5c","#90ee90"]);
+            .range(["#FF6347","#90ee90"]);
 
-        var ratings = ["Poor Net Rating",  "Good Net Rating"]
+        var ratings = ["Good Net Rating", "Poor Net Rating" ]
         var scatterColorOrdinal = d3.scaleOrdinal()
             .domain(ratings)
-            .range(["#cd5c5c","#90ee90"]);
+            .range(["#90ee90", "#FF6347"]);
 
 
         // Legend
@@ -402,7 +402,7 @@ function change(setting) {
         scene2.selectAll("rect")
             .transition()
             .duration(2000)
-            .attr("fill", "#cd5c5c")
+            .attr("fill", "#FF6347")
             .attr("y", function (d, i) { return y2(d_3P[i]) + 10; })
             .attr("height", function (d, i) { return height - y2(d_3P[i]); })
           }
