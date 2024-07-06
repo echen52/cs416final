@@ -35,23 +35,7 @@ var yAxis = d3.axisLeft()
     .scale(y)
     .ticks(10);
 
-// axis appends
 
-
-
-
-// scene3.append('text')
-//     .attr('x', -500)
-//     .attr('y', 15)
-//     .attr('transform', 'rotate(-90)')
-//     .attr('text-anchor', 'middle')
-//     .text('Number of Cylinders')
-//
-// scene3.append('text')
-//     .attr('x', 500)
-//     .attr('y', 1150)
-//     .attr('text-anchor', 'middle')
-//     .text('Fuel Type')
 
 // --------------------------------------------------------------------------------//
 // SCENE ONE ----------------------------------------------------------------------//
@@ -159,7 +143,7 @@ async function load1() {
             .enter().append("circle")
             .attr("cx", d => scatterScaleX (d.D_REL) )  // Align with center of band
             .attr("cy", d => scatterScaleY(d.O_REL))
-            .attr("r", 10)
+            .attr("r", 15)
             .style("fill", d => scatterColor (d.NET_RTG))
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
@@ -412,11 +396,6 @@ function change(setting) {
 // SCENE THREE --------------------------------------------------------------------//
 // --------------------------------------------------------------------------------//
 
-// Reference: https://www.d3-graph-gallery.com/graph/connectedscatter_select.html
-// var keys_fuel = ["Diesel", "Gasoline", "Electricity"]
-// var shape = d3.scaleOrdinal()
-//     .domain(keys_fuel)
-//     .range([d3.symbol().type("circle"), d3.symbol().type("diamond"), d3.symbol().type("square")]);
 
 var scatter_tooltip = d3.select("body")
     .append("div")
@@ -428,7 +407,6 @@ var scatter_tooltip = d3.select("body")
     .style("padding", "15px")
     .style("color", "white")
 
-// var keys_cyls = ["2", "4", "6", "8", "10", "12"]
 
 async function load3() {
     d3.csv("Data/NBA_24_team.csv").then(function (data) {
@@ -449,36 +427,10 @@ async function load3() {
                   .range([10, 50])
                   .domain([10, 18])
 
-        var opacityScale = d3.scaleLinear()
-                  .range([1, 0])
+        var defColorScale = d3.scaleLinear()
+                  .range(["#90ee90", "#FF6347"])
                   .domain([10, 15])
 
-
-        // var fuelScale = d3.scaleBand()
-        //     .range([0, width])
-        //     .domain(data.map(function (d) { return d.Fuel; }))
-        //
-        // var fuelAxis = d3.axisBottom()
-        //     .scale(fuelScale)
-        //     .ticks(5);
-        //
-        // var cylScale = d3.scaleBand()
-        //     .range([height, 0])
-        //     .domain(keys_cyls)
-        //
-        // var cylAxis = d3.axisLeft()
-        //     .scale(cylScale);
-
-        // scene3.append("g")
-        //     .attr("transform", "translate(50,160)")
-        //     .attr("class", "axis")
-        //     .call(cylAxis);
-        //
-        // scene3.append("g")
-        //     .attr("transform", "translate(50,1100)")
-        //     .attr("class", "axis")
-        //     .call(fuelAxis)
-        //     .selectAll("text")
 
         scene3.append('text')
             .attr('x', -500)
@@ -510,8 +462,6 @@ async function load3() {
 
 
 
-
-
         scene3.append('g')
             .selectAll("dots")
             .data(data)
@@ -522,8 +472,8 @@ async function load3() {
             .attr("cy", function (d) {return scatterScaleY(d.O_REL); })
 
             .attr("r", function (d) { return radiusScale(d.O_3P); })
-            .style("fill", function (d) { return "#98FB98"; })
-            .style("opacity", function(d) {return opacityScale(d.D_3P);})
+            .style("fill", function (d) { return defColorScale(d.D_3P); })
+            .style("opacity", .9)
             .attr("stroke", "black")
             .on("mouseover", function (d) {
                 scatter_tooltip.transition()
