@@ -165,7 +165,7 @@ async function load1() {
             .attr("x", 650)
             .attr("y", 550)
             .attr("width", 350)
-            .attr("height", 50)
+            .attr("height", 60)
             .style("fill", 'lightgray')
 
         scene1.append('text')
@@ -174,9 +174,19 @@ async function load1() {
             .attr("width", 60)
             .attr("height", 50)
             .style("fill", 'black')
-            .text("Teams with high net rating are good at offense and defense; the opposite is true for bad net rating teams.")
+            .text("Teams with high net rating are good at offense")
             .attr("text-anchor", "left")
             .style("alignment-baseline", "middle")
+
+        scene1.append('text')
+                .attr("x", 660)
+                .attr("y", 600)
+                .attr("width", 60)
+                .attr("height", 50)
+                .style("fill", 'black')
+                .text("and defense; the opposite is true for bad net rating teams.")
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle")
 
 
 
