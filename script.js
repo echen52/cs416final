@@ -162,17 +162,17 @@ async function load1() {
 
             // Annotation
         scene1.append('rect')
-            .attr("x", 600)
+            .attr("x", 650)
             .attr("y", 550)
-            .attr("width", 500)
-            .attr("height", 30)
+            .attr("width", 350)
+            .attr("height", 50)
             .style("fill", 'lightgray')
 
         scene1.append('text')
-            .attr("x", 610)
+            .attr("x", 660)
             .attr("y", 570)
             .attr("width", 60)
-            .attr("height", 20)
+            .attr("height", 50)
             .style("fill", 'black')
             .text("Teams with high net rating are good at offense and defense; the opposite is true for bad net rating teams.")
             .attr("text-anchor", "left")
