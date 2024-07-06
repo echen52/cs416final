@@ -40,18 +40,18 @@ var yAxis = d3.axisLeft()
 
 
 
-scene3.append('text')
-    .attr('x', -500)
-    .attr('y', 15)
-    .attr('transform', 'rotate(-90)')
-    .attr('text-anchor', 'middle')
-    .text('Number of Cylinders')
-
-scene3.append('text')
-    .attr('x', 500)
-    .attr('y', 1150)
-    .attr('text-anchor', 'middle')
-    .text('Fuel Type')
+// scene3.append('text')
+//     .attr('x', -500)
+//     .attr('y', 15)
+//     .attr('transform', 'rotate(-90)')
+//     .attr('text-anchor', 'middle')
+//     .text('Number of Cylinders')
+//
+// scene3.append('text')
+//     .attr('x', 500)
+//     .attr('y', 1150)
+//     .attr('text-anchor', 'middle')
+//     .text('Fuel Type')
 
 // --------------------------------------------------------------------------------//
 // SCENE ONE ----------------------------------------------------------------------//
@@ -201,7 +201,7 @@ var x2 = d3.scaleBand()
 
 
 var y2 = d3.scaleLinear()
-    .domain([10, 20])
+    .domain([10, 18])
     .range([height, 0]);
 
 var xAxis2 = d3.axisBottom()
@@ -210,7 +210,7 @@ var xAxis2 = d3.axisBottom()
 
 var yAxis2 = d3.axisLeft()
     .scale(y2)
-    .ticks(10);
+    .ticks(9);
 
 
 
@@ -413,10 +413,10 @@ function change(setting) {
 // --------------------------------------------------------------------------------//
 
 // Reference: https://www.d3-graph-gallery.com/graph/connectedscatter_select.html
-var keys_fuel = ["Diesel", "Gasoline", "Electricity"]
-var shape = d3.scaleOrdinal()
-    .domain(keys_fuel)
-    .range([d3.symbol().type("circle"), d3.symbol().type("diamond"), d3.symbol().type("square")]);
+// var keys_fuel = ["Diesel", "Gasoline", "Electricity"]
+// var shape = d3.scaleOrdinal()
+//     .domain(keys_fuel)
+//     .range([d3.symbol().type("circle"), d3.symbol().type("diamond"), d3.symbol().type("square")]);
 
 var scatter_tooltip = d3.select("body")
     .append("div")
@@ -428,47 +428,93 @@ var scatter_tooltip = d3.select("body")
     .style("padding", "15px")
     .style("color", "white")
 
-var keys_cyls = ["2", "4", "6", "8", "10", "12"]
+// var keys_cyls = ["2", "4", "6", "8", "10", "12"]
 
 async function load3() {
-    d3.csv("Data/cars2017.csv").then(function (data) {
+    d3.csv("Data/NBA_24_team.csv").then(function (data) {
 
-        var fuelScale = d3.scaleBand()
-            .range([0, width])
-            .domain(data.map(function (d) { return d.Fuel; }))
+        var scatterScaleX = d3.scaleLinear()
+                  .range([0, width])
+                  .domain([-10, 10])
 
-        var fuelAxis = d3.axisBottom()
-            .scale(fuelScale)
-            .ticks(5);
 
-        var cylScale = d3.scaleBand()
-            .range([height, 0])
-            .domain(keys_cyls)
+        var scatterScaleY = d3.scaleLinear()
+                  .range([height, 0])
+                  .domain([-10, 10])
 
-        var cylAxis = d3.axisLeft()
-            .scale(cylScale);
+        var xAxis3 = d3.axisBottom(scatterScaleX)
+        var yAxis3 = d3.axisLeft(scatterScaleY)
+
+
+
+        // var fuelScale = d3.scaleBand()
+        //     .range([0, width])
+        //     .domain(data.map(function (d) { return d.Fuel; }))
+        //
+        // var fuelAxis = d3.axisBottom()
+        //     .scale(fuelScale)
+        //     .ticks(5);
+        //
+        // var cylScale = d3.scaleBand()
+        //     .range([height, 0])
+        //     .domain(keys_cyls)
+        //
+        // var cylAxis = d3.axisLeft()
+        //     .scale(cylScale);
+
+        // scene3.append("g")
+        //     .attr("transform", "translate(50,160)")
+        //     .attr("class", "axis")
+        //     .call(cylAxis);
+        //
+        // scene3.append("g")
+        //     .attr("transform", "translate(50,1100)")
+        //     .attr("class", "axis")
+        //     .call(fuelAxis)
+        //     .selectAll("text")
+
+        scene3.append('text')
+            .attr('x', -500)
+            .attr('y', 15)
+            .attr('transform', 'rotate(-90)')
+            .attr('text-anchor', 'middle')
+            .text('Offensive Rating')
+
+        scene3.append('text')
+            .attr('x', 500)
+            .attr('y', 1050)
+            .attr('text-anchor', 'middle')
+            .text('Defensive Rating')
+
+
 
         scene3.append("g")
-            .attr("transform", "translate(50,160)")
-            .attr("class", "axis")
-            .call(cylAxis);
+                .attr("transform", "translate(50,950)")
+                .attr("class", "axis")
+                .call(xAxis3)
+                .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-30)")
+                .style("text-anchor", "end")
 
         scene3.append("g")
-            .attr("transform", "translate(50,1100)")
-            .attr("class", "axis")
-            .call(fuelAxis)
-            .selectAll("text")
+                .attr("transform", "translate(50,20)")
+                .attr("class", "axis")
+                .call(yAxis3)
+
+
+
+
 
         scene3.append('g')
             .selectAll("dot")
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", function (d) { return 200 + fuelScale(d.Fuel); })
+            .attr("cx", d => scatterScaleX (d.D_REL) })
             // .attr("cy", function (d) { return 1050 - cylScale(12-d.EngineCylinders); })
-            .attr("cy", function (d) { return 1000 - 60 * d.EngineCylinders; })
+            .attr("cy", d => scatterScaleX (d.O_REL))
 
-            .attr("r", function (d) { return d.AverageHighwayMPG / 1.5; })
+            .attr("r", function (d) { return d.O_3P; })
             .style("fill", function (d) { return "#5E4FA2"; })
             .style("opacity", "0.1")
             .attr("stroke", "black")
@@ -476,7 +522,7 @@ async function load3() {
                 scatter_tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                scatter_tooltip.html(d.Make)
+                scatter_tooltip.html(d.Team)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
