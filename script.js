@@ -160,6 +160,23 @@ async function load1() {
             });
 
 
+            // Annotation
+        scene1.append('rect')
+            .attr("x", 600)
+            .attr("y", 550)
+            .attr("width", 500)
+            .attr("height", 30)
+            .style("fill", 'lightgray')
+
+        scene1.append('text')
+            .attr("x", 610)
+            .attr("y", 570)
+            .attr("width", 60)
+            .attr("height", 20)
+            .style("fill", 'black')
+            .text("Teams with high net rating are good at offense and defense; the opposite is true for bad net rating teams.")
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
 
 
 
