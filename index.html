@@ -34,7 +34,10 @@
     </div>
     <a href="#two" class="back">Next</a>
     <h2 id="one">How do NBA Teams Compare on Offense and Defense?</h2>
-    <p>See how each NBA team performs on offense and defense. Hover over each point to see the team. </p>
+    <p>See how each NBA team performs on offense and defense.
+      A zero net rating means the team has a neutral point differential and is expected to win exactly half of their games (41-41 Record).
+      Teams with positive net rating are expected to win more than 41 games, and teams with negative net rating are expected to win less than 41 games.
+      Hover over each point to see the team. </p>
 
 
     <svg id="scene1" width=1050 height=1100>
@@ -42,6 +45,11 @@
         <line x1="60" y1="490" x2="800" y2="490" stroke="black" stroke-dasharray="4" />
         <text x="475" y="65">League Average Defense</text>
         <line x1="475" y1="100" x2="475" y2="925" stroke="black" stroke-dasharray="4" />
+        <text x="825" y="950">Zero Net Rating</text>
+        <line x1="60" y1="100" x2="800" y2="925" stroke="black" stroke-dasharray="4" />
+
+
+
     </svg>
 
     <hr>
@@ -50,7 +58,8 @@
     <a href="#three" class="back">Next</a>
 
     <h2 id="two">NBA Teams 3 Pointers Per Game</h2>
-    <p>See how 3 pointers each NBA team makes and allows per game. Click on the button to switch between offense and defense.
+    <p>See how many 3 pointers each NBA team makes and allows per game.
+      Click on the button to switch between offense and defense.
     </p>
 
     <div>
@@ -71,7 +80,7 @@
     <h2 id="three">What is the relationship between 3 Pointers Made/Allowed on Team Offense/Defense?</h2>
     <p>This visualization shows the relationship between the 3 Pointers Made/Allowed on NBA Teams' Offensive/Defensive Efficiency.
       The size of the plotted point represents the number of 3 pointers made while the density represents the number of 3 pointers allowed.
-      Plotted onto the first plot of Offensive/Defensive Efficiency shows trends between 3 pointers and team performance.
+      The overlay of the Offensive/Defensive Efficiency plot shows trends between 3 pointers and team performance.
         </p>
     <svg id="scene3" width=1050 height=1100>
       <text x="825" y="490">League Average Offense</text>
@@ -91,26 +100,23 @@
     <p>
         <a href="#intro" class="back">Back to Top</a>
 
+        <h2>Conclusion</h2>
+        <p> 3-point shooting is an important component of NBA team performance. From these visualizations done on the 2024 NBA regular season,
+          it appears that there is more impact for 3-point shooting on NBA team offense than there is for minimizing 3-point shooting on NBA team defense.
+          A possible explanation is that NBA teams and coaches can better control team offense and shooting with changing lineups and shot selection,
+          rather than controlling opponent shooting abilities and how it may affect their team defense.
+          Further studies for defense could incorporate rim makes (layups and dunks), since studies have shown that defense is more correlated
+          with these shots rather than 3-point shooting.
+        </p>
+
         <h2>Acknowledgements</h2>
-        <p>Listed here are the various sources I used for learning about D3. Elements of this visualization are drawn from the
-            examples cited below.
+        <p> Please see below for the original data source.
         </p>
         <ul>
             <li>
-                <a href="https://flunky.github.io/cars2017.csv">Data Source</a>
+                <a href="https://www.basketball-reference.com/leagues/NBA_2024.html">2023-24 NBA Regular Season Data</a>
             </li>
-            <li>
-                <a href="https://bl.ocks.org/d3noob/4e4485d94aebf63ae8059258c40f2609">Tooltips</a>
-            </li>
-            <li>
-                <a href="https://www.d3-graph-gallery.com/graph/bubble_tooltip.html">Tooltips 2</a>
-            </li>
-            <li>
-                <a href="https://observablehq.com/@d3/d3-scaleordinal">ScaleOrdinal</a>
-            </li>
-            <li>
-                <a href="https://www.d3-graph-gallery.com/graph/bubble_template.html">Opacity change on hover</a>
-            </li>
+
         </ul>
     </p>
 </body>
