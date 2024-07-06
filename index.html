@@ -23,10 +23,10 @@
                 <a href="#one" class="contents">How do NBA Teams Compare on Offense and Defense?</a>
             </li>
             <li>
-                <a href="#two" class="contents">Do Engine Cylinders Affect Mileage?</a>
+                <a href="#two" class="contents">NBA Teams 3 Pointers Per Game</a>
             </li>
             <li>
-                <a href="#three" class="contents">What is the relationship between fuel type, number of engine cylinders and the mileage?</a>
+                <a href="#three" class="contents">What is the Relationship between 3 Pointers Made/Allowed on Team Offense/Defense?</a>
             </li>
         </ul>
         <hr>
@@ -66,12 +66,19 @@
 
     <a href="#intro" class="back">Back to Top</a>
     <a href="#two" class="back">Previous</a>
-    <h2 id="three">What is the relationship between fuel type, number of engine cylinders and the mileage?</h2>
-    <p>This visualization shows us the relationship between all three fields: fuel type, engine cylinder, and average MPG. The size of the
-        plotted point indicates the mileage, while the density represents the relative value of the cars that fall into that configuration of fuel type and
-        cylinder number.
+
+
+    <h2 id="three">What is the relationship between 3 Pointers Made/Allowed on Team Offense/Defense?</h2>
+    <p>This visualization shows the relationship between the 3 Pointers Made/Allowed on NBA Teams' Offensive/Defensive Efficiency.
+      The size of the plotted point represents the number of 3 pointers made while the density represents the number of 3 pointers allowed.
+      Plotted onto the first plot of Offensive/Defensive Efficiency shows trends between 3 pointers and team performance.
         </p>
-    <svg id="scene3" width=1050 height=1200></svg>
+    <svg id="scene3" width=1050 height=1100>
+      <text x="825" y="490">League Average Offense</text>
+      <line x1="60" y1="490" x2="800" y2="490" stroke="black" stroke-dasharray="4" />
+      <text x="475" y="65">League Average Defense</text>
+      <line x1="475" y1="100" x2="475" y2="925" stroke="black" stroke-dasharray="4" />
+    </svg>
 
     <!-- Script -->
     <script src="script.js"></script>
