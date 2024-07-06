@@ -462,6 +462,45 @@ async function load3() {
 
 
 
+
+
+          var d_3P_labels= ["Low # of Opp 3s", "High # of Opp 3s" ]
+          var d_3P_ColorOrdinal = d3.scaleOrdinal()
+                    .domain(d_3P_labels)
+                    .range(["#90ee90", "#FF6347"]);
+
+
+
+          var size = 30
+          scene3.selectAll("legend")
+                                .data(d_3P_labels)
+                                .enter()
+                                .append("rect")
+                                .attr("x", 800)
+                                .attr("y", function (d, i) { return 200 + i * (size + 5) })
+                                .attr("width", size)
+                                .attr("height", size)
+                                .attr("stroke", "black")
+                                .style("fill", function (d) { return d_3P_ColorOrdinal(d) })
+                                // .on("mouseover", function (d) { highlight(d) })
+                                // .on("mouseleave", function (d) { noHighlight(d) })
+
+          scene3.selectAll("labels")
+                                .data(d_3P_labels)
+                                .enter()
+                                .append("text")
+                                .attr("x", 800 + size * 1.2)
+                                .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 2) })
+                                .style("fill", function (d) { return "black" })
+                                .text(function (d) { return d })
+                                .attr("text-anchor", "left")
+                                .style("alignment-baseline", "middle")
+                                // .on("mouseover", highlight)
+                                // .on("mouseleave", noHighlight)
+
+
+
+
         scene3.append('g')
             .selectAll("dots")
             .data(data)
