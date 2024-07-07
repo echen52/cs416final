@@ -422,12 +422,12 @@ async function load2() {
 
 
 // Scene 2 Annotation
-scene2.append('rect')
-.attr("x", 650)
-.attr("y", 250)
-.attr("width", 375)
-.attr("height", 80)
-.style("fill", 'lightgray')
+// scene2.append('rect')
+// .attr("x", 650)
+// .attr("y", 250)
+// .attr("width", 375)
+// .attr("height", 80)
+// .style("fill", 'lightgray')
 
 scene2.append('text')
 .attr("x", 660)
