@@ -404,7 +404,7 @@ async function load2() {
     .attr("y", function (d, i) { return y2(o_3P[i]) + 10; })
     .attr("width", teamScale.bandwidth() - 10)
     .attr("height", function (d, i) { return height - y2(o_3P[i]); })
-    .attr("fill", "#90ee90").on("mouseover", function (d, i) {
+    .attr("fill", "#1E90FF").on("mouseover", function (d, i) {
       bar_tooltip.transition()
       .duration(200)
       .style("opacity", .9);
@@ -431,7 +431,7 @@ async function load2() {
 
 scene2.append('text')
 .attr("x", 660)
-.attr("y", 270)
+.attr("y", 170)
 .attr("width", 60)
 .attr("height", 50)
 .style("fill", 'black')
@@ -441,7 +441,7 @@ scene2.append('text')
 
 scene2.append('text')
 .attr("x", 660)
-.attr("y", 290)
+.attr("y", 190)
 .attr("width", 60)
 .attr("height", 50)
 .style("fill", 'black')
@@ -451,7 +451,7 @@ scene2.append('text')
 
 scene2.append('text')
 .attr("x", 660)
-.attr("y", 310)
+.attr("y", 210)
 .attr("width", 60)
 .attr("height", 50)
 .style("fill", 'black')
@@ -478,7 +478,7 @@ function change(setting) {
     scene2.selectAll("rect")
     .transition()
     .duration(2000)
-    .attr("fill", "#90ee90")
+    .attr("fill", "#1E90FF")
     .attr("y", function (d, i) { return y2(o_3P[i]) + 10; })
     .attr("height", function (d, i) { return height - y2(o_3P[i]); })
   } else {
