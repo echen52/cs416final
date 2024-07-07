@@ -3,7 +3,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
 <head>
-    <title>2024 NBA Regular Season</title>
+    <title>2024 NBA Regular Season Analysis</title>
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
@@ -12,11 +12,15 @@
     <div>
         <hr>
         <h3>
-            Given the increasing effects of climate change, and the high volume of automobiles in the world, we must seek to better understand
-            the mileages of various automobiles. There are many factors that can affect the mileage of your car (See:
-            <a href="https://www.fueleconomy.gov/feg/factors.shtml#:~:text=Vehicle%20Maintenance,older%20cars%20with%20carbureted%20engines.">Link</a>) but in this interactive visualization, we will explore 2017 data about the the respective highway and
-            city MPGs of automobiles, with respect to just a few of these factors, like engine cylinders, fuel type and the
-            make of the vehicle.
+          In the modern NBA, analytics are a key component to evaluating team success. Teams use tracking
+          data from game to game to collect data to gain a competitive edge. These statistics can influence
+          how teams are assembled with player acquisitions as well as team playstyle. At the same time, there is a
+          great emphasis in the current NBA on 3-point shooting. (See:
+          <a href="https://en.wikipedia.org/wiki/Three-point_revolution">Three Point Revolution</a>)
+          Intuitively, the 3-point shot is crucial because it opens space on the court for more offense and makes teams
+          more difficult to guard on defense.
+          This interactive visualization aims to answer if the data matches that intuitive reasoning.
+          Data used in this interactive visualization is collected from the 2023-24 NBA regular season.
         </h3>
         <ul>
             <li>
@@ -34,7 +38,8 @@
     </div>
     <a href="#two" class="back">Next</a>
     <h2 id="one">How do NBA Teams Compare on Offense and Defense?</h2>
-    <p>See how each NBA team performs on offense and defense.
+    <p>See how each NBA team performs on offense and defense. One way to evaluate team performance is with Net Rating or point differential.
+      Studies have shown that Net Rating is a good predictor of team wins and losses over the 82 game NBA regular season.
       A zero net rating means the team has a neutral point differential and is expected to win exactly half of their games (41-41 Record).
       Teams with positive net rating are expected to win more than 41 games, and teams with negative net rating are expected to win less than 41 games.
       Hover over each point to see the team. </p>
@@ -58,7 +63,7 @@
     <a href="#three" class="back">Next</a>
 
     <h2 id="two">NBA Teams 3 Pointers Per Game</h2>
-    <p>See how many 3 pointers each NBA team makes and allows per game.
+    <p>See how many 3 pointers each NBA team makes and allows per game. Hover over the bar to see the team.
       Click on the button to switch between offense and defense.
     </p>
 
@@ -79,8 +84,9 @@
 
     <h2 id="three">What is the relationship between 3 Pointers Made/Allowed on Team Offense/Defense?</h2>
     <p>This visualization shows the relationship between the 3 Pointers Made/Allowed on NBA Teams' Offensive/Defensive Efficiency.
-      The size of the plotted point represents the number of 3 pointers made while the density represents the number of 3 pointers allowed.
+      The size of the plotted point represents the number of 3 pointers made while the color scale highlights the number of 3 pointers allowed.
       The overlay of the Offensive/Defensive Efficiency plot shows trends between 3 pointers and team performance.
+      Hover over the point to see the team.
         </p>
     <svg id="scene3" width=1050 height=1100>
       <text x="825" y="490">League Average Offense</text>
@@ -94,21 +100,19 @@
     <!-- Script -->
     <script src="script.js"></script>
 
-<!--     <hr>
-    <a href="#intro" class="back">Back to Top</a>
 
-    <hr> -->
 
     <p>
         <a href="#intro" class="back">Back to Top</a>
 
         <h2>Conclusion</h2>
-        <p> 3-point shooting is an important component of NBA team performance. From these visualizations done on the 2024 NBA regular season,
+        <p> The data matches the intuition and shows that 3-point shooting is an important component of NBA team performance. From these visualizations done on the 2024 NBA regular season,
           it appears that there is more impact for 3-point shooting on NBA team offense than there is for minimizing 3-point shooting on NBA team defense.
           A possible explanation is that NBA teams and coaches can better control team offense and shooting with changing lineups and shot selection,
           rather than controlling opponent shooting abilities and how it may affect their team defense.
           Further studies for defense could incorporate rim makes (layups and dunks), since studies have shown that defense is more correlated
-          with these shots rather than 3-point shooting.
+          with these shots rather than 3-point shooting. Additionally, more years worth of data could also provide more information of trends between
+          3-point shooting and offensive and defensive efficiency.
         </p>
 
         <h2>Acknowledgements</h2>
