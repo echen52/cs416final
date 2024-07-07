@@ -546,8 +546,8 @@ async function load3() {
     scene3.append('rect')
     .attr("x", 650)
     .attr("y", 550)
-    .attr("width", 410)
-    .attr("height", 80)
+    .attr("width", 360)
+    .attr("height", 105)
     .style("fill", 'lightgray')
 
     scene3.append('text')
