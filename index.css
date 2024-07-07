@@ -18,7 +18,7 @@ h1 {
     letter-spacing: 2px;
     line-height: 1;
     text-align: center;
-    background-color: rgb(150, 198, 240);
+    background-color: rgb(255,218,185);
     padding: 20px;
 }
 
@@ -152,11 +152,11 @@ button {
 }
 
 #offense {
-    background-color: rgb(159, 152, 190);
+    background-color: rgb(30,144,255);
 }
 
 #defense {
-    background-color: rgb(130, 196, 175);
+    background-color: rgb(255,99,71);
 }
 
 img {
