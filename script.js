@@ -17,23 +17,23 @@ width = 1000 - margin.left - margin.right,
 height = 1000 - margin.top - margin.bottom;
 
 // axis definition
-var x = d3.scaleBand()
-.domain([10, 20, 30, 40, 50])
-.range([0, width]);
-
-
-
-var y = d3.scaleLinear()
-.domain([0, 120])
-.range([height, 0]);
-
-var xAxis = d3.axisBottom()
-.scale(x)
-.ticks(5);
-
-var yAxis = d3.axisLeft()
-.scale(y)
-.ticks(10);
+// var x = d3.scaleBand()
+// .domain([10, 20, 30, 40, 50])
+// .range([0, width]);
+//
+//
+//
+// var y = d3.scaleLinear()
+// .domain([0, 120])
+// .range([height, 0]);
+//
+// var xAxis = d3.axisBottom()
+// .scale(x)
+// .ticks(5);
+//
+// var yAxis = d3.axisLeft()
+// .scale(y)
+// .ticks(10);
 
 
 var scatter_tooltip = d3.select("body")
@@ -76,20 +76,6 @@ scene1.append('text')
 
 
 
-// var scatter_tooltip1 = d3.select("body")
-// .append("div")
-// .append("div")
-// .style("opacity", 0)
-// .attr("class", "tooltip")
-// .style("background-color", "black")
-// .style("border-radius", "15px")
-// .style("padding", "15px")
-// .style("color", "white")
-
-
-
-
-
 
 async function load1() {
   d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
@@ -129,8 +115,7 @@ async function load1() {
     .attr("height", size)
     .attr("stroke", "black")
     .style("fill", function (d) { return scatterColorOrdinal(d) })
-    // .on("mouseover", function (d) { highlight(d) })
-    // .on("mouseleave", function (d) { noHighlight(d) })
+
 
     scene1.selectAll("labels")
     .data(ratings)
@@ -142,8 +127,7 @@ async function load1() {
     .text(function (d) { return d })
     .attr("text-anchor", "left")
     .style("alignment-baseline", "middle")
-    // .on("mouseover", highlight)
-    // .on("mouseleave", noHighlight)
+
 
     scene1.append("g")
     .attr("transform", "translate(50,950)")
@@ -422,12 +406,6 @@ async function load2() {
 
 
 // Scene 2 Annotation
-// scene2.append('rect')
-// .attr("x", 650)
-// .attr("y", 250)
-// .attr("width", 375)
-// .attr("height", 80)
-// .style("fill", 'lightgray')
 
 scene2.append('text')
 .attr("x", 660)
@@ -458,15 +436,6 @@ scene2.append('text')
 .text("with player skills and coaching.")
 .attr("text-anchor", "left")
 .style("alignment-baseline", "middle")
-
-
-
-
-
-
-
-
-
 
 
 
@@ -573,8 +542,7 @@ async function load3() {
     .attr("height", size)
     .attr("stroke", "black")
     .style("fill", function (d) { return d_3P_ColorOrdinal(d) })
-    // .on("mouseover", function (d) { highlight(d) })
-    // .on("mouseleave", function (d) { noHighlight(d) })
+
 
     scene3.selectAll("labels")
     .data(d_3P_labels)
@@ -586,8 +554,7 @@ async function load3() {
     .text(function (d) { return d })
     .attr("text-anchor", "left")
     .style("alignment-baseline", "middle")
-    // .on("mouseover", highlight)
-    // .on("mouseleave", noHighlight)
+
 
 
 
