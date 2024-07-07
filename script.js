@@ -421,6 +421,57 @@ async function load2() {
 }
 
 
+// Scene 2 Annotation
+scene2.append('rect')
+.attr("x", 650)
+.attr("y", 250)
+.attr("width", 375)
+.attr("height", 80)
+.style("fill", 'lightgray')
+
+scene2.append('text')
+.attr("x", 660)
+.attr("y", 270)
+.attr("width", 60)
+.attr("height", 50)
+.style("fill", 'black')
+.text("Large variance in 3-point shots made and ")
+.attr("text-anchor", "left")
+.style("alignment-baseline", "middle")
+
+scene2.append('text')
+.attr("x", 660)
+.attr("y", 290)
+.attr("width", 60)
+.attr("height", 50)
+.style("fill", 'black')
+.text("allowed show the differences between teams ")
+.attr("text-anchor", "left")
+.style("alignment-baseline", "middle")
+
+scene2.append('text')
+.attr("x", 660)
+.attr("y", 310)
+.attr("width", 60)
+.attr("height", 50)
+.style("fill", 'black')
+.text("with player skills and coaching.")
+.attr("text-anchor", "left")
+.style("alignment-baseline", "middle")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // This function is called by the buttons on top of the plot
 function change(setting) {
   if (setting === "O_3P") {
@@ -542,12 +593,12 @@ async function load3() {
 
 
 
-    // Scene 1 Annotation
+    // Scene 3 Annotation
     scene3.append('rect')
     .attr("x", 650)
     .attr("y", 550)
     .attr("width", 360)
-    .attr("height", 105)
+    .attr("height", 110)
     .style("fill", 'lightgray')
 
     scene3.append('text')
