@@ -16,26 +16,8 @@ var margin = { top: 10, right: 100, bottom: 50, left: 50 },
 width = 1000 - margin.left - margin.right,
 height = 1000 - margin.top - margin.bottom;
 
-// axis definition
-// var x = d3.scaleBand()
-// .domain([10, 20, 30, 40, 50])
-// .range([0, width]);
-//
-//
-//
-// var y = d3.scaleLinear()
-// .domain([0, 120])
-// .range([height, 0]);
-//
-// var xAxis = d3.axisBottom()
-// .scale(x)
-// .ticks(5);
-//
-// var yAxis = d3.axisLeft()
-// .scale(y)
-// .ticks(10);
 
-
+// tooltips
 var scatter_tooltip = d3.select("body")
 .append("div")
 .append("div")
@@ -77,8 +59,8 @@ scene1.append('text')
 
 
 
-async function load1() {
-  d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
+async function createScene1() {
+  d3.csv("Data/NBA_24_team.csv").then(function (data) {
 
 
     var scatterScaleX = d3.scaleLinear()
@@ -143,9 +125,9 @@ async function load1() {
     .call(yAxis1)
 
     scene1.selectAll("circle")
-    .data(data_given)
+    .data(data)
     .enter().append("circle")
-    .attr("cx", d => scatterScaleX (d.D_REL) )  // Align with center of band
+    .attr("cx", d => scatterScaleX (d.D_REL) )
     .attr("cy", d => scatterScaleY(d.O_REL))
     .attr("r", 15)
     .style("fill", d => scatterColor (d.NET_RTG))
@@ -359,13 +341,13 @@ scene2.append('text')
 
 
 
-async function load2() {
-  d3.csv("Data/NBA_24_team.csv").then(function (data_given) {
+async function createScene2() {
+  d3.csv("Data/NBA_24_team.csv").then(function (data) {
 
 
     var teamScale = d3.scaleBand()
     .range([0, width])
-    .domain(data_given.map(function (d) { return d.Team; }))
+    .domain(data.map(function (d) { return d.Team; }))
 
     var teamAxis = d3.axisBottom()
     .scale(teamScale)
@@ -381,7 +363,7 @@ async function load2() {
 
 
     scene2.selectAll("mybar")
-    .data(data_given)
+    .data(data)
     .enter()
     .append("rect")
     .attr("x", function (d, i) { return margin.left + teamScale(teams[i]); })
@@ -441,7 +423,7 @@ scene2.append('text')
 
 
 
-// This function is called by the buttons on top of the plot
+// Change between offense and defense
 function change(setting) {
   if (setting === "O_3P") {
     scene2.selectAll("rect")
@@ -468,7 +450,7 @@ function change(setting) {
 
 
 
-async function load3() {
+async function createScene3() {
   d3.csv("Data/NBA_24_team.csv").then(function (data) {
 
     var scatterScaleX = d3.scaleLinear()
