@@ -66,7 +66,7 @@ label,
 text, a {
     color: #111;
     font-family: 'Helvetica Neue', sans-serif;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 150;
     letter-spacing: 1px;
     line-height: 1.5;
@@ -94,11 +94,11 @@ div.tooltip {
     position: absolute;
     text-align: center;
     width: 90px;
-    height: 38px;
+    height: 50px;
     padding: 2px;
     font-family: 'Helvetica Light', sans-serif;
     font-weight: lighter;
-    font: 18px sans-serif;
+    font: 14px sans-serif;
     background: rgb(174, 181, 190);
     border: 0px;
     border-radius: 8px;
